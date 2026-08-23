@@ -1,0 +1,82 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FilterBar from '../../components/FilterBar.astro';
+import { AREA_LABELS, AREA_ORDER } from '../../lib/taxonomy';
+
+const items = await getCollection('reading');
+
+const NEW_WITHIN_DAYS = 30;
+const now = Date.now();
+const isNew = (added?: Date) => !!added && (now - added.getTime()) / (1000 * 60 * 60 * 24) <= NEW_WITHIN_DAYS;
+
+const TYPE_LABEL: Record<string, string> = {
+  book: 'Book',
+  article: 'Article',
+  report: 'Report',
+  case: 'Case',
+  other: 'Other',
+};
+
+const areaFacet = {
+  key: 'area',
+  label: 'Area',
+  options: AREA_ORDER.filter((a) => items.some((i) => i.data.areas.includes(a as never))).map((value) => ({
+    value,
+    label: AREA_LABELS[value],
+    count: items.filter((i) => i.data.areas.includes(value as never)).length,
+  })),
+};
+const typeFacet = {
+  key: 'type',
+  label: 'Type',
+  options: Array.from(new Set(items.map((i) => i.data.type))).map((value) => ({
+    value,
+    label: TYPE_LABEL[value],
+    count: items.filter((i) => i.data.type === value).length,
+  })),
+};
+---
+
+<BaseLayout title="Reading" description="An annotated bibliography of things worth reading in copyright, AI and law and technology.">
+  <div class="page prose-width" style="padding-block: var(--space-6) var(--space-8);">
+    <h1>Reading</h1>
+    <p>
+      An annotated bibliography — not a blog, its own section. <a href="/reading/rss.xml">RSS for new additions →</a>
+    </p>
+
+    <FilterBar facets={[areaFacet, typeFacet]} searchPlaceholder="Search title, authors" />
+
+    <div data-filter-list>
+      {
+        AREA_ORDER.filter((area) => items.some((i) => i.data.areas.includes(area as never))).map((area) => (
+          <div data-filter-group>
+            <h2 class="year-heading">{AREA_LABELS[area]}</h2>
+            <ul class="card-list">
+              {items
+                .filter((i) => i.data.areas.includes(area as never))
+                .map((item) => (
+                  <li
+                    data-filterable
+                    data-facet-area={item.data.areas.join(' ')}
+                    data-facet-type={item.data.type}
+                    data-search={[item.data.title, ...item.data.authors].join(' ').toLowerCase()}
+                  >
+                    <p class="meta">
+                      <span class="badge badge--accent">{TYPE_LABEL[item.data.type]}</span>
+                      {isNew(item.data.added) && <span class="badge" style="margin-left: 0.3em;">New</span>}
+                    </p>
+                    <h3 style="margin-top: var(--space-1); font-size: var(--text-lg);">
+                      {item.data.link ? <a href={item.data.link}>{item.data.title}</a> : item.data.title}
+                    </h3>
+                    <p class="meta">{item.data.authors.join(', ')} ({item.data.year})</p>
+                    <p>{item.data.annotation}</p>
+                  </li>
+                ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</BaseLayout>

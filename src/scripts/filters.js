@@ -43,8 +43,8 @@
     return true;
   }
 
-  function updateYearGroups() {
-    document.querySelectorAll('[data-year-group]').forEach((group) => {
+  function updateFilterGroups() {
+    document.querySelectorAll('[data-filter-group]').forEach((group) => {
       const anyVisible = Array.from(group.querySelectorAll('[data-filterable]')).some((i) => !i.hidden);
       group.hidden = !anyVisible;
     });
@@ -87,7 +87,7 @@
     });
     updateCounts(active, query);
     updateURL(active, query, pushHistory);
-    updateYearGroups();
+    updateFilterGroups();
     if (status) status.textContent = `${visible} of ${items.length} shown`;
   }
 

@@ -11,6 +11,20 @@ function publicationsParser(text: string) {
   return parseYaml(text).map((entry: Record<string, unknown>) => ({ ...entry, id: entry.slug }));
 }
 
+// Shared between publications and reading.yaml (brief §4: "area tags (same
+// vocabulary as publications)").
+const AREAS = [
+  'copyright',
+  'ai',
+  'it-security-law',
+  'unfair-competition-law',
+  'antitrust',
+  'law-and-society',
+  'transnational-law',
+  'culture-and-law',
+  'societal-constitutionalism',
+] as const;
+
 const writing = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/writing' }),
   schema: z.object({
@@ -44,19 +58,7 @@ const publications = defineCollection({
     editorRole: z.boolean().default(false),
     year: z.number(),
     type: z.enum(['monograph', 'edited-volume', 'article', 'chapter', 'case-note', 'blog', 'working-paper']),
-    areas: z.array(
-      z.enum([
-        'copyright',
-        'ai',
-        'it-security-law',
-        'unfair-competition-law',
-        'antitrust',
-        'law-and-society',
-        'transnational-law',
-        'culture-and-law',
-        'societal-constitutionalism',
-      ])
-    ),
+    areas: z.array(z.enum(AREAS)),
     venue: z.string(),
     language: z.enum(['de', 'en']),
     openAccess: z.boolean().default(false),
@@ -85,4 +87,44 @@ const uses = defineCollection({
   }),
 });
 
-export const collections = { writing, publications, now, uses };
+const talks = defineCollection({
+  loader: file('talks.yaml'),
+  schema: z.object({
+    title: z.string(),
+    event: z.string(),
+    institution: z.string(),
+    place: z.string(),
+    date: z.coerce.date(),
+    type: z.enum(['talk', 'panel', 'lecture', 'workshop', 'conference-organisation']),
+    language: z.enum(['de', 'en']),
+    slides: z.string().optional(),
+    link: z.string().url().optional(),
+    note: z.string().optional(),
+  }),
+});
+
+const teaching = defineCollection({
+  loader: file('teaching.yaml'),
+  schema: z.object({
+    course: z.string(),
+    institution: z.string(),
+    term: z.string(),
+    level: z.string(),
+  }),
+});
+
+const reading = defineCollection({
+  loader: file('reading.yaml'),
+  schema: z.object({
+    title: z.string(),
+    authors: z.array(z.string()),
+    year: z.number(),
+    link: z.string().url().optional(),
+    areas: z.array(z.enum(AREAS)),
+    type: z.enum(['book', 'article', 'report', 'case', 'other']).default('other'),
+    annotation: z.string(),
+    added: z.coerce.date().optional(),
+  }),
+});
+
+export const collections = { writing, publications, now, uses, talks, teaching, reading };

@@ -50,7 +50,7 @@ const typeFacet = {
     <div data-filter-list>
       {
         years.map((year) => (
-          <div data-year-group>
+          <div data-filter-group>
             <h2 class="year-heading">{year}</h2>
             <ul class="card-list">
               {byYear.get(year)!.map((pub) => <PublicationCard pub={{ ...pub.data, slug: pub.id }} />)}
