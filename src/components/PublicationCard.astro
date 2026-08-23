@@ -15,15 +15,15 @@ const search = [pub.title, pub.venue, ...pub.authors].join(' ').toLowerCase();
 ---
 
 <li
-  class="pub-card"
+  class="entry-card"
   data-filterable
   data-facet-area={pub.areas.join(' ')}
   data-facet-type={pub.type}
   data-search={search}
 >
-  <a href={`/research/${pub.slug}/`} class="pub-card__image-link" tabindex="-1" aria-hidden="true">
+  <a href={`/research/${pub.slug}/`} class="entry-card__image-link" tabindex="-1" aria-hidden="true">
     <img
-      class="pub-card__image"
+      class="entry-card__image"
       src={`/og/research/${pub.slug}.png`}
       width="1200"
       height="630"
@@ -32,7 +32,7 @@ const search = [pub.title, pub.venue, ...pub.authors].join(' ').toLowerCase();
       alt=""
     />
   </a>
-  <div class="pub-card__body">
+  <div class="entry-card__body">
     <p class="meta">
       <span class="badge badge--accent">{TYPE_LABEL[pub.type]}</span>
       <span class="badge" style="margin-left: 0.3em;">{pub.language === 'de' ? 'DE' : 'EN'}</span>

@@ -11,52 +11,66 @@ const dateFormatter = new Intl.DateTimeFormat('en-GB', { year: 'numeric', month:
 ---
 
 <BaseLayout title="Blog" description="Posts, papers I found interesting, and links worth a note — copyright, AI, law and technology.">
-  <div class="page prose-width" style="padding-block: var(--space-6) var(--space-8);">
+  <div class="page" style="padding-block: var(--space-6) var(--space-8);">
+    <p class="section-label">// blog</p>
     <h1>Blog</h1>
 
-    <ul class="card-list card-list--divided">
+    <ul class="card-list card-list--divided" style="margin-top: var(--space-6); max-width: 52rem;">
       {
         posts.map((post) => {
           const linkHost = post.data.link ? new URL(post.data.link).hostname.replace(/^www\./, '') : undefined;
           return (
-            <li>
-              <p class="meta">
-                <time datetime={post.data.date.toISOString()}>{dateFormatter.format(post.data.date)}</time>
-                {' · '}
-                <span class="badge">{post.data.language === 'de' ? 'DE' : 'EN'}</span>
-                {post.data.venue && (
-                  <span class="badge badge--accent" style="margin-left: 0.3em;">
-                    via {post.data.venue}
-                  </span>
-                )}
-                {post.data.link && (
-                  <span class="badge" style="margin-left: 0.3em;">
-                    link{post.data.linkSource ? ` · via ${post.data.linkSource}` : linkHost ? ` · ${linkHost}` : ''}
-                  </span>
-                )}
-              </p>
-              <h2 style="margin-top: var(--space-1); font-size: var(--text-lg);">
-                {post.data.link ? (
-                  <a href={post.data.link} target="_blank" rel="noopener noreferrer">
-                    {post.data.title} <span aria-hidden="true">↗</span>
-                  </a>
-                ) : (
-                  <a href={`/blog/${post.id}/`}>{post.data.title}</a>
-                )}
-              </h2>
-              <p>{post.data.description}</p>
-              {post.data.link && (
+            <li class="entry-card">
+              <a href={`/blog/${post.id}/`} class="entry-card__image-link" tabindex="-1" aria-hidden="true">
+                <img
+                  class="entry-card__image"
+                  src={`/og/blog/${post.id}.png`}
+                  width="1200"
+                  height="630"
+                  loading="lazy"
+                  decoding="async"
+                  alt=""
+                />
+              </a>
+              <div class="entry-card__body">
                 <p class="meta">
-                  <a href={`/blog/${post.id}/`}>Permalink →</a>
+                  <time datetime={post.data.date.toISOString()}>{dateFormatter.format(post.data.date)}</time>
+                  {' · '}
+                  <span class="badge">{post.data.language === 'de' ? 'DE' : 'EN'}</span>
+                  {post.data.venue && (
+                    <span class="badge badge--accent" style="margin-left: 0.3em;">
+                      via {post.data.venue}
+                    </span>
+                  )}
+                  {post.data.link && (
+                    <span class="badge" style="margin-left: 0.3em;">
+                      link{post.data.linkSource ? ` · via ${post.data.linkSource}` : linkHost ? ` · ${linkHost}` : ''}
+                    </span>
+                  )}
                 </p>
-              )}
+                <h2 style="margin-top: var(--space-1); font-size: var(--text-lg);">
+                  {post.data.link ? (
+                    <a href={post.data.link} target="_blank" rel="noopener noreferrer">
+                      {post.data.title} <span aria-hidden="true">↗</span>
+                    </a>
+                  ) : (
+                    <a href={`/blog/${post.id}/`}>{post.data.title}</a>
+                  )}
+                </h2>
+                <p>{post.data.description}</p>
+                {post.data.link && (
+                  <p class="meta">
+                    <a href={`/blog/${post.id}/`}>Permalink →</a>
+                  </p>
+                )}
+              </div>
             </li>
           );
         })
       }
     </ul>
 
-    <div style="margin-top: var(--space-8);">
+    <div style="margin-top: var(--space-8); max-width: 42rem;">
       <NewsletterForm />
     </div>
   </div>

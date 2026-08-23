@@ -32,68 +32,98 @@ const jsonLd = {
 ---
 
 <BaseLayout title={SITE.title} jsonLd={jsonLd}>
-  <div class="page prose-width" style="padding-block: var(--space-7) var(--space-8);">
-    <h1 style="font-size: var(--text-2xl);">Darius Rostam</h1>
+  <div class="page" style="padding-block: var(--space-7) var(--space-8);">
+    <h1 class="hero-name">Darius Rostam</h1>
+    <p class="hero-tagline">Postdoc, University of Bonn · Executive Director, Bucerius IP Center</p>
 
-    <p style="margin-top: var(--space-5);">
-      Welcome! I am a postdoc at University of Bonn and Executive Director of the Center for Transnational IP,
-      Media and Technology Law and Policy at Bucerius Law School in Hamburg.
-    </p>
-    <p>My research focuses on private law as well as law and technology, especially copyright and AI.</p>
-    <p>You can find my publications and my blog below.</p>
-    <p>
-      If you'd like to collaborate, feel free to{' '}
-      {SOCIALS.email ? <a href={`mailto:${SOCIALS.email}`}>email me</a> : 'email me'}. You can find me on:
-    </p>
+    <div class="prose-width" style="margin-top: var(--space-6);">
+      <p>
+        Welcome! I am a postdoc at University of Bonn and Executive Director of the Center for Transnational IP,
+        Media and Technology Law and Policy at Bucerius Law School in Hamburg.
+      </p>
+      <p>My research focuses on private law as well as law and technology, especially copyright and AI.</p>
+      <p>You can find my publications and my blog below.</p>
+      <p>
+        If you'd like to collaborate, feel free to{' '}
+        {SOCIALS.email ? <a href={`mailto:${SOCIALS.email}`}>email me</a> : 'email me'}. You can find me on:
+      </p>
 
-    <div class="social-icons" style="margin-top: var(--space-4);">
-      <a href={SOCIALS.linkedin} aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-      <a href={SOCIALS.ssrn} aria-label="SSRN author page" target="_blank" rel="noopener noreferrer">SSRN</a>
-      <a href={SOCIALS.bluesky} aria-label="Bluesky" target="_blank" rel="me noopener noreferrer">Bluesky</a>
-      <a href="/rss.xml" aria-label="RSS feed">RSS</a>
+      <div class="social-icons" style="margin-top: var(--space-4);">
+        <a href={SOCIALS.linkedin} aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href={SOCIALS.ssrn} aria-label="SSRN author page" target="_blank" rel="noopener noreferrer">SSRN</a>
+        <a href={SOCIALS.bluesky} aria-label="Bluesky" target="_blank" rel="me noopener noreferrer">Bluesky</a>
+        <a href="/rss.xml" aria-label="RSS feed">RSS</a>
+      </div>
     </div>
 
-    <h2 style="margin-top: var(--space-8);">Now</h2>
-    <p class:list={['meta', { 'stale-warning': isStale }]}>
-      Last updated <time datetime={nowEntry.data.updated.toISOString()}>{dateFormatter.format(nowEntry.data.updated)}</time>
-      {isStale && ` — that's ${daysSinceUpdate} days ago.`}
-    </p>
-    <div>
-      <NowContent />
-    </div>
-    <p><a href="/now">/now →</a></p>
+    <section style="margin-top: var(--space-8);">
+      <p class="section-label">// now</p>
+      <div class="prose-width">
+        <p class:list={['meta', { 'stale-warning': isStale }]}>
+          Last updated <time datetime={nowEntry.data.updated.toISOString()}>{dateFormatter.format(nowEntry.data.updated)}</time>
+          {isStale && ` — that's ${daysSinceUpdate} days ago.`}
+        </p>
+        <div>
+          <NowContent />
+        </div>
+        <p><a href="/now">/now →</a></p>
+      </div>
+    </section>
 
-    <h2 style="margin-top: var(--space-7);">Recent work</h2>
-    <ul class="card-list">
-      {
-        recentPubs.map((pub) => (
-          <li>
-            <p class="meta">{pub.data.year} · {pub.data.venue}</p>
-            <p>
-              <a href={`/research/${pub.id}/`}>{pub.data.title}</a>
-            </p>
-          </li>
-        ))
-      }
-    </ul>
-    <p><a href="/research">All research →</a></p>
+    <section style="margin-top: var(--space-8);">
+      <p class="section-label">// research</p>
+      <h2>Recent work</h2>
+      <div class="card-grid">
+        {
+          recentPubs.map((pub) => (
+            <a class="tile-card" href={`/research/${pub.id}/`}>
+              <img
+                class="tile-card__image"
+                src={`/og/research/${pub.id}.png`}
+                width="1200"
+                height="630"
+                loading="lazy"
+                decoding="async"
+                alt=""
+              />
+              <p class="meta">{pub.data.year} · {pub.data.venue}</p>
+              <p class="tile-card__title">{pub.data.title}</p>
+            </a>
+          ))
+        }
+      </div>
+      <p style="margin-top: var(--space-4);"><a href="/research">All research →</a></p>
+    </section>
 
-    <h2 style="margin-top: var(--space-7);">Recent blog</h2>
-    <ul class="card-list">
-      {
-        recentPosts.map((post) => (
-          <li>
-            <p class="meta">{post.data.date.toISOString().slice(0, 10)}{post.data.venue && ` · via ${post.data.venue}`}</p>
-            <p>
-              <a href={`/blog/${post.id}/`}>{post.data.title}</a>
-            </p>
-          </li>
-        ))
-      }
-    </ul>
-    <p><a href="/blog">All blog posts →</a></p>
+    <section style="margin-top: var(--space-8);">
+      <p class="section-label">// blog</p>
+      <h2>Recent blog</h2>
+      <div class="card-grid">
+        {
+          recentPosts.map((post) => (
+            <a class="tile-card" href={`/blog/${post.id}/`}>
+              <img
+                class="tile-card__image"
+                src={`/og/blog/${post.id}.png`}
+                width="1200"
+                height="630"
+                loading="lazy"
+                decoding="async"
+                alt=""
+              />
+              <p class="meta">
+                {post.data.date.toISOString().slice(0, 10)}
+                {post.data.venue && ` · via ${post.data.venue}`}
+              </p>
+              <p class="tile-card__title">{post.data.title}</p>
+            </a>
+          ))
+        }
+      </div>
+      <p style="margin-top: var(--space-4);"><a href="/blog">All blog posts →</a></p>
+    </section>
 
-    <div style="margin-top: var(--space-8);">
+    <div class="prose-width" style="margin-top: var(--space-8);">
       <NewsletterForm />
     </div>
   </div>

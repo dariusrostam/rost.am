@@ -1,3 +1,70 @@
+/* Homepage hero */
+.hero-name {
+  font-size: clamp(3rem, 2rem + 6vw, 6rem);
+  font-variation-settings: 'wght' 800;
+  letter-spacing: -0.02em;
+  line-height: 0.95;
+  margin: 0;
+}
+
+.hero-tagline {
+  font-family: var(--font-sans);
+  font-size: var(--text-lg);
+  color: var(--color-text-muted);
+  margin: var(--space-3) 0 0;
+}
+
+/* Tile cards: image-led grid, used for "recent work"/"recent blog" */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: var(--space-5);
+  margin-top: var(--space-5);
+}
+
+.tile-card {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.tile-card__image {
+  width: 100%;
+  aspect-ratio: 1200 / 630;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-raised);
+  transition: border-color var(--duration-fast) var(--ease);
+}
+
+.tile-card:hover .tile-card__image {
+  border-color: var(--color-accent);
+}
+
+.tile-card .meta {
+  margin: var(--space-3) 0 0;
+}
+
+.tile-card__title {
+  margin: var(--space-1) 0 0;
+  font-variation-settings: 'wght' 600;
+  line-height: var(--leading-tight);
+}
+
+.tile-card:hover .tile-card__title {
+  color: var(--color-accent);
+}
+
+/* Decorative section label, e.g. "// blog" above a heading */
+.section-label {
+  font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+  font-size: var(--text-sm);
+  color: var(--color-accent);
+  letter-spacing: 0.02em;
+  margin: 0 0 var(--space-2);
+}
+
 /* Buttons */
 .button {
   display: inline-flex;
@@ -60,6 +127,43 @@
 .chip .count {
   opacity: 0.7;
   font-variant-numeric: tabular-nums;
+}
+
+/* Each facet value gets its own color (light-mode shade by default; both
+   shades are set inline per chip -- see src/lib/chipColors.ts). */
+.chip--colored {
+  border-color: var(--chip-l);
+  color: var(--chip-l);
+}
+
+.chip--colored[aria-pressed='true'] {
+  background: var(--chip-l);
+  border-color: var(--chip-l);
+  color: #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme='light']) .chip--colored {
+    border-color: var(--chip-d);
+    color: var(--chip-d);
+  }
+
+  html:not([data-theme='light']) .chip--colored[aria-pressed='true'] {
+    background: var(--chip-d);
+    border-color: var(--chip-d);
+    color: #0a1330;
+  }
+}
+
+html[data-theme='dark'] .chip--colored {
+  border-color: var(--chip-d);
+  color: var(--chip-d);
+}
+
+html[data-theme='dark'] .chip--colored[aria-pressed='true'] {
+  background: var(--chip-d);
+  border-color: var(--chip-d);
+  color: #0a1330;
 }
 
 /* Research page: entries + filter sidebar. Filters sit after the entries
@@ -241,17 +345,17 @@
 }
 
 /* Publication cards: small preview thumbnail + text, side by side */
-.pub-card {
+.entry-card {
   display: flex;
   gap: var(--space-4);
   align-items: flex-start;
 }
 
-.pub-card__image-link {
+.entry-card__image-link {
   flex: none;
 }
 
-.pub-card__image {
+.entry-card__image {
   width: 8.5rem;
   aspect-ratio: 1200 / 630;
   object-fit: cover;
@@ -260,13 +364,13 @@
   background: var(--color-bg-raised);
 }
 
-.pub-card__body {
+.entry-card__body {
   min-width: 0;
   flex: 1;
 }
 
 @media (max-width: 480px) {
-  .pub-card__image {
+  .entry-card__image {
     width: 5.5rem;
   }
 }

@@ -3,7 +3,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout title="Impressum" description="Impressum nach § 5 TMG." lang="de">
-  <div class="page prose-width" style="padding-block: var(--space-6) var(--space-8);">
+  <div class="page" style="padding-block: var(--space-6) var(--space-8);">
+    <div class="prose-width">
     <h1>Impressum</h1>
 
     <p class="meta">
@@ -69,5 +70,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <p>
       Informationen zum Umgang mit personenbezogenen Daten finden Sie in der <a href="/datenschutz">Datenschutzerklärung</a>.
     </p>
+    </div>
   </div>
 </BaseLayout>

@@ -72,65 +72,71 @@ const jsonLd = {
   noindex={demo}
   image={new URL(`/og/blog/${slug}.png`, SITE.url).toString()}
 >
-  <article class="page prose-width" style="padding-block: var(--space-6) var(--space-8);">
-    {demo && (
-      <p class="meta" style="margin-bottom: var(--space-4);">
-        <strong>Demo post</strong> — exists only to exercise the margin-note system, not part of the real site content.
-      </p>
-    )}
+  <article class="page" style="padding-block: var(--space-6) var(--space-8);">
+    <div class="prose-width">
+      {demo && (
+        <p class="meta" style="margin-bottom: var(--space-4);">
+          <strong>Demo post</strong> — exists only to exercise the margin-note system, not part of the real site content.
+        </p>
+      )}
 
-    {isCrosspost && crosspostMode === 'full' && venueUrl && (
-      <p class="meta" data-no-print style="margin-bottom: var(--space-4);">
-        This appeared first in <a href={venueUrl} target="_blank" rel="noopener noreferrer">{venue}</a>.
-      </p>
-    )}
+      {isCrosspost && crosspostMode === 'full' && venueUrl && (
+        <p class="meta" data-no-print style="margin-bottom: var(--space-4);">
+          This appeared first in <a href={venueUrl} target="_blank" rel="noopener noreferrer">{venue}</a>.
+        </p>
+      )}
 
-    <header style="margin-bottom: var(--space-6);">
-      <h1>
-        {link ? (
-          <a href={link} target="_blank" rel="noopener noreferrer">
-            {title} <span aria-hidden="true">↗</span>
-          </a>
-        ) : (
-          title
-        )}
-      </h1>
-      <p class="meta">
-        <time datetime={date.toISOString()}>{dateFormatter.format(date)}</time>
-        {updated && (
-          <>
-            {' · '}updated <time datetime={updated.toISOString()}>{dateFormatter.format(updated)}</time>
-          </>
-        )}
-        {' · '}
-        <span class="badge">{language === 'de' ? 'DE' : 'EN'}</span>
-        {link && <span class="badge" style="margin-left: 0.3em;">link{linkSource ? ` · via ${linkSource}` : linkHost ? ` · ${linkHost}` : ''}</span>}
-        {tags.map((tag) => <span class="badge" style="margin-left: 0.3em;">{tag}</span>)}
-      </p>
-    </header>
-
-    {isCrosspost && crosspostMode === 'stub' ? (
-      <>
-        <p>{description}</p>
-        {venueUrl && (
-          <p>
-            <a class="button" href={venueUrl} target="_blank" rel="noopener noreferrer">
-              Read at {venue} →
+      <header style="margin-bottom: var(--space-6);">
+        <h1>
+          {link ? (
+            <a href={link} target="_blank" rel="noopener noreferrer">
+              {title} <span aria-hidden="true">↗</span>
             </a>
-          </p>
-        )}
+          ) : (
+            title
+          )}
+        </h1>
+        <p class="meta">
+          <time datetime={date.toISOString()}>{dateFormatter.format(date)}</time>
+          {updated && (
+            <>
+              {' · '}updated <time datetime={updated.toISOString()}>{dateFormatter.format(updated)}</time>
+            </>
+          )}
+          {' · '}
+          <span class="badge">{language === 'de' ? 'DE' : 'EN'}</span>
+          {link && <span class="badge" style="margin-left: 0.3em;">link{linkSource ? ` · via ${linkSource}` : linkHost ? ` · ${linkHost}` : ''}</span>}
+          {tags.map((tag) => <span class="badge" style="margin-left: 0.3em;">{tag}</span>)}
+        </p>
+      </header>
+
+      {isCrosspost && crosspostMode === 'stub' && (
+        <>
+          <p>{description}</p>
+          {venueUrl && (
+            <p>
+              <a class="button" href={venueUrl} target="_blank" rel="noopener noreferrer">
+                Read at {venue} →
+              </a>
+            </p>
+          )}
+        </>
+      )}
+    </div>
+
+    {!(isCrosspost && crosspostMode === 'stub') && (
+      <>
+        <div class="article-body">
+          <slot />
+        </div>
+        <script>
+          import '../scripts/margin-notes.js';
+        </script>
       </>
-    ) : (
-      <div class="article-body">
-        <slot />
-      </div>
-      <script>
-        import '../scripts/margin-notes.js';
-      </script>
     )}
 
     {!demo && (
-      <div style="margin-top: var(--space-8);">
+      <div class="prose-width" style="margin-top: var(--space-8);">
         <NewsletterForm />
       </div>
     )}

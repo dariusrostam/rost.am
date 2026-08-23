@@ -4,6 +4,8 @@
 // is what actually hides/shows and writes the URL query string. Without JS
 // this renders as an inert (but harmless) set of buttons over a complete,
 // crawlable list.
+import { chipColor } from '../lib/chipColors';
+
 interface FacetOption {
   value: string;
   label: string;
@@ -34,11 +36,21 @@ const { facets, searchPlaceholder = 'Search' } = Astro.props;
       <div class="filter-group">
         <span class="filter-group__label">{facet.label}</span>
         <div class="filter-group__chips">
-          {facet.options.map((opt) => (
-            <button type="button" class="chip" data-facet={facet.key} data-value={opt.value} aria-pressed="false">
-              {opt.label} <span class="count" data-count>{opt.count}</span>
-            </button>
-          ))}
+          {facet.options.map((opt) => {
+            const { light, dark } = chipColor(opt.value);
+            return (
+              <button
+                type="button"
+                class="chip chip--colored"
+                data-facet={facet.key}
+                data-value={opt.value}
+                aria-pressed="false"
+                style={`--chip-l: ${light}; --chip-d: ${dark};`}
+              >
+                {opt.label} <span class="count" data-count>{opt.count}</span>
+              </button>
+            );
+          })}
         </div>
       </div>
     ))

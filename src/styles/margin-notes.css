@@ -1,6 +1,5 @@
 .article-body {
   max-width: var(--content-width);
-  margin-inline: auto;
 }
 
 .article-body sup a[data-footnote-ref] {
