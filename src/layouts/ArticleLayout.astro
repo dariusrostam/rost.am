@@ -2,6 +2,7 @@
 import BaseLayout from './BaseLayout.astro';
 import { SITE } from '../config';
 import marginNotesCss from '../styles/margin-notes.css?raw';
+import NewsletterForm from '../components/NewsletterForm.astro';
 
 interface Props {
   title: string;
@@ -112,6 +113,12 @@ const jsonLd = {
       <script>
         import '../scripts/margin-notes.js';
       </script>
+    )}
+
+    {!demo && (
+      <div style="margin-top: var(--space-8);">
+        <NewsletterForm />
+      </div>
     )}
   </article>
 </BaseLayout>
