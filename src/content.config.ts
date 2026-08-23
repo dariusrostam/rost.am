@@ -67,4 +67,22 @@ const publications = defineCollection({
   }),
 });
 
-export const collections = { writing, publications };
+const now = defineCollection({
+  loader: glob({ pattern: '*.md', base: './src/content/now' }),
+  schema: z.object({
+    updated: z.coerce.date(),
+  }),
+});
+
+const uses = defineCollection({
+  loader: file('uses.yaml'),
+  schema: z.object({
+    name: z.string(),
+    url: z.string().url().optional(),
+    reason: z.string(),
+    category: z.enum(['Writing & research', 'Legal research', 'Dev & automation', 'Hardware', 'Reading & notes']),
+    status: z.enum(['added', 'dropped']).optional(),
+  }),
+});
+
+export const collections = { writing, publications, now, uses };

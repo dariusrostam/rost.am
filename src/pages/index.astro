@@ -1,10 +1,86 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import NewsletterForm from '../components/NewsletterForm.astro';
+import { SITE, SOCIALS } from '../config';
+
+const recentPubs = (await getCollection('publications')).sort((a, b) => b.data.year - a.data.year).slice(0, 3);
+const recentPosts = (await getCollection('writing', ({ data }) => !data.draft && !data.demo))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+
+const sameAs = [SOCIALS.linkedin, SOCIALS.ssrn, SOCIALS.bluesky, SOCIALS.orcid].filter(Boolean);
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: SITE.author,
+  jobTitle: 'Postdoctoral Researcher',
+  affiliation: [
+    { '@type': 'CollegeOrUniversity', name: 'University of Bonn' },
+    { '@type': 'CollegeOrUniversity', name: 'Bucerius Law School' },
+  ],
+  url: SITE.url,
+  sameAs,
+};
 ---
 
-<BaseLayout title="Darius Rostam">
-  <div class="page prose-width" style="padding-block: var(--space-7);">
-    <h1>Scaffold OK</h1>
-    <p>Design system smoke test — replaced with the real home page in a later milestone.</p>
+<BaseLayout title={SITE.title} jsonLd={jsonLd}>
+  <div class="page prose-width" style="padding-block: var(--space-7) var(--space-8);">
+    <h1 style="font-size: var(--text-2xl);">Darius Rostam</h1>
+    <p style="font-size: var(--text-lg); color: var(--color-text-muted); font-family: var(--font-sans);">
+      Postdoc at the University of Bonn · Executive Director, Bucerius IP Center
+    </p>
+
+    <p style="margin-top: var(--space-5);">
+      Dr. Darius Rostam, LL.M. (NYU), is a postdoc at the University of Bonn (chair of Prof. Dr. Benjamin Raue) and
+      Executive Director of the Center for Transnational IP, Media and Technology Law and Policy (the Bucerius IP
+      Center) at Bucerius Law School, Hamburg. His research is in private law and law and technology, particularly
+      copyright and AI. <a href="/about">More →</a>
+    </p>
+
+    <p>
+      Currently: see <a href="/now">/now</a> for what I'm working on, writing and reading toward right now.
+    </p>
+
+    <div class="social-icons" style="margin-top: var(--space-4);">
+      <a href={SOCIALS.linkedin} aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href={SOCIALS.ssrn} aria-label="SSRN author page" target="_blank" rel="noopener noreferrer">SSRN</a>
+      <a href={SOCIALS.bluesky} aria-label="Bluesky" target="_blank" rel="me noopener noreferrer">Bluesky</a>
+      <a href="/rss.xml" aria-label="RSS feed">RSS</a>
+    </div>
+
+    <h2 style="margin-top: var(--space-8);">Recent work</h2>
+    <ul class="card-list">
+      {
+        recentPubs.map((pub) => (
+          <li>
+            <p class="meta">{pub.data.year} · {pub.data.venue}</p>
+            <p>
+              <a href={`/research/${pub.id}/`}>{pub.data.title}</a>
+            </p>
+          </li>
+        ))
+      }
+    </ul>
+    <p><a href="/research">All research →</a></p>
+
+    <h2 style="margin-top: var(--space-7);">Recent writing</h2>
+    <ul class="card-list">
+      {
+        recentPosts.map((post) => (
+          <li>
+            <p class="meta">{post.data.date.toISOString().slice(0, 10)}{post.data.venue && ` · via ${post.data.venue}`}</p>
+            <p>
+              <a href={`/writing/${post.id}/`}>{post.data.title}</a>
+            </p>
+          </li>
+        ))
+      }
+    </ul>
+    <p><a href="/writing">All writing →</a></p>
+
+    <div style="margin-top: var(--space-8);">
+      <NewsletterForm />
+    </div>
   </div>
 </BaseLayout>

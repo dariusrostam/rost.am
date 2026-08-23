@@ -1,0 +1,34 @@
+# /uses — software & tech. LOREM placeholder entries below (the brief says
+# not to invent this list); replace with the real items, keeping the same
+# five category names so /uses's grouping keeps working. `id` just needs to
+# be unique and stable. See CONTENT.md for the field reference.
+
+- id: writing-research-placeholder
+  name: "LOREM Placeholder Tool"
+  url: "https://example.com"
+  reason: "LOREM ipsum dolor sit amet — replace with the real one-line reason."
+  category: "Writing & research"
+
+- id: legal-research-placeholder
+  name: "LOREM Placeholder Tool"
+  url: "https://example.com"
+  reason: "LOREM ipsum dolor sit amet — replace with the real one-line reason."
+  category: "Legal research"
+
+- id: dev-automation-placeholder
+  name: "LOREM Placeholder Tool"
+  url: "https://example.com"
+  reason: "LOREM ipsum dolor sit amet — replace with the real one-line reason."
+  category: "Dev & automation"
+
+- id: hardware-placeholder
+  name: "LOREM Placeholder Tool"
+  reason: "LOREM ipsum dolor sit amet — replace with the real one-line reason."
+  category: "Hardware"
+
+- id: reading-notes-placeholder
+  name: "LOREM Placeholder Tool"
+  url: "https://example.com"
+  reason: "LOREM ipsum dolor sit amet — replace with the real one-line reason."
+  category: "Reading & notes"
+  status: "added"

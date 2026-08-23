@@ -1,0 +1,26 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const [nowEntry] = await getCollection('now');
+const { Content } = await render(nowEntry);
+
+const STALE_AFTER_DAYS = 45;
+const daysSinceUpdate = Math.floor((Date.now() - nowEntry.data.updated.getTime()) / (1000 * 60 * 60 * 24));
+const isStale = daysSinceUpdate > STALE_AFTER_DAYS;
+
+const dateFormatter = new Intl.DateTimeFormat('en-GB', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+
+<BaseLayout title="Now" description="What I'm working on right now.">
+  <div class="page prose-width" style="padding-block: var(--space-6) var(--space-8);">
+    <h1>Now</h1>
+    <p class:list={['meta', { 'stale-warning': isStale }]}>
+      Last updated <time datetime={nowEntry.data.updated.toISOString()}>{dateFormatter.format(nowEntry.data.updated)}</time>
+      {isStale && ` — that's ${daysSinceUpdate} days ago. Take this page with a grain of salt.`}
+    </p>
+    <div style="margin-top: var(--space-5);">
+      <Content />
+    </div>
+  </div>
+</BaseLayout>
