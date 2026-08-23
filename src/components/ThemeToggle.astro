@@ -1,0 +1,53 @@
+---
+---
+
+<button
+  type="button"
+  class="theme-toggle"
+  id="theme-toggle"
+  aria-label="Toggle dark mode"
+  data-theme-toggle
+>
+  <svg data-icon="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+    <circle cx="12" cy="12" r="4"></circle>
+    <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path>
+  </svg>
+  <svg data-icon="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+    <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path>
+  </svg>
+</button>
+
+<style>
+  [data-icon='moon'] {
+    display: none;
+  }
+  :global([data-theme='dark']) [data-icon='sun'] {
+    display: none;
+  }
+  :global([data-theme='dark']) [data-icon='moon'] {
+    display: inline;
+  }
+  @media (prefers-color-scheme: dark) {
+    :global(html:not([data-theme='light'])) [data-icon='sun'] {
+      display: none;
+    }
+    :global(html:not([data-theme='light'])) [data-icon='moon'] {
+      display: inline;
+    }
+  }
+</style>
+
+<script>
+  const STORAGE_KEY = 'theme';
+  const button = document.getElementById('theme-toggle');
+
+  button?.addEventListener('click', () => {
+    const root = document.documentElement;
+    const current = root.getAttribute('data-theme');
+    const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const currentlyDark = current ? current === 'dark' : systemDark;
+    const next = currentlyDark ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    localStorage.setItem(STORAGE_KEY, next);
+  });
+</script>

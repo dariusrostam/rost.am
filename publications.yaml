@@ -1,0 +1,207 @@
+# Publications — migrated from the Notion "Research" database.
+#
+# TODO before launch (Darius):
+#   - `type` was empty on every Notion entry; values below are my inference. Verify.
+#   - `openAccess` is inferred from SSRN / attached files. Verify each.
+#   - PDFs: 7 entries had files attached in Notion. Download them and place at
+#     /public/papers/<slug>.pdf — the `pdf` field already points there.
+#   - Two entries share the title "Handlungslasten des Urhebers" (the Mohr Siebeck
+#     monograph and the ZGE article). Kept deliberately; the UI disambiguates by type.
+#   - The ZGE article was tagged Year 2026 in Notion but is cited as ZGE (4) 2025,
+#     471–499. Set to 2025 below — change back if the print year really is 2026.
+
+- slug: opt-outs-in-copyright-law
+  title: "Opt-Outs in Copyright Law: Can They Save AI Training Under Fair Use and the Three-Step Test?"
+  authors: ["Darius Rostam"]
+  year: 2026
+  type: working-paper
+  areas: [copyright, ai]
+  venue: "SSRN Working Paper"
+  language: en
+  openAccess: true
+  ssrn: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6163107"
+  pdf: "/papers/opt-outs-in-copyright-law.pdf"
+
+- slug: web-scraping-in-culture-and-law
+  title: "Web Scraping in Culture and Law"
+  authors: ["Darius Rostam"]
+  year: 2026
+  type: working-paper
+  areas: [culture-and-law, ai]
+  venue: "SSRN Working Paper"
+  language: en
+  openAccess: true
+  ssrn: "https://ssrn.com/abstract=6158429"
+  pdf: "/papers/web-scraping-in-culture-and-law.pdf"
+
+- slug: wieder-nur-vervielfaeltigungen-laion
+  title: "(Wieder nur) Zur Zulässigkeit von Vervielfältigungen für die Erstellung eines Datensatzes – zugleich Besprechung von OLG Hamburg, Urt. v. 10.12.2025 – 5 U 104/24 – LAION"
+  authors: ["Darius Rostam"]
+  year: 2026
+  type: case-note
+  areas: [copyright, ai]
+  venue: "GRUR 2026, 376"
+  language: de
+  openAccess: false
+  url: "https://beck-online.beck.de/Bcid/Y-300-Z-GRUR-B-2026-S-376-N-1"
+
+- slug: zum-umgang-mit-umgehung
+  title: "Zum Umgang mit Umgehung – Anmerkung zu Generalanwalt beim EuGH, Schlussanträge vom 15.1.2026 – C-788/24 – Anne Frank Fonds"
+  authors: ["Darius Rostam"]
+  year: 2026
+  type: case-note
+  areas: [copyright]
+  venue: "ZUM 2026, 535"
+  language: de
+  openAccess: false
+  url: "https://beck-online.beck.de/Bcid/Y-300-Z-ZUM-B-2026-S-535-N-1"
+
+- slug: targeting-the-right-question
+  title: "Targeting the Right Question: What AG Rantos Left Open in Anne Frank Fonds"
+  authors: ["Darius Rostam"]
+  year: 2026
+  type: blog
+  areas: [copyright]
+  venue: "Kluwer Copyright Blog"
+  language: en
+  openAccess: true
+  url: "https://legalblogs.wolterskluwer.com/copyright-blog/targeting-the-right-question-what-ag-rantos-left-open-in-anne-frank-fonds/"
+
+- slug: ai-companions-regulierung
+  title: "Wenn künstliche Liebe gefährlich wird: Regulierung von AI Companions"
+  authors: ["Darius Rostam"]
+  year: 2026
+  type: blog
+  areas: [ai, law-and-society]
+  venue: "Legal Tribune Online"
+  language: de
+  openAccess: true
+  url: "https://www.lto.de/recht/hintergruende/h/regulierung-ai-companions-kuenstliche-liebe-regulierung"
+
+- slug: handlungslasten-des-urhebers
+  title: "Handlungslasten des Urhebers"
+  authors: ["Darius Rostam"]
+  year: 2025
+  type: monograph
+  areas: [copyright]
+  venue: "Mohr Siebeck, Tübingen 2025 (Dissertation, Universität Trier)"
+  language: de
+  openAccess: true
+  doi: "10.1628/978-3-16-164546-4"
+  pdf: "/papers/handlungslasten-des-urhebers.pdf"
+
+- slug: handlungslasten-zge
+  title: "Handlungslasten des Urhebers"
+  authors: ["Darius Rostam"]
+  year: 2025
+  type: article
+  areas: [copyright, ai]
+  venue: "ZGE (4) 2025, 471–499"
+  language: de
+  openAccess: true
+  doi: "10.1628/zge-2025-0022"
+  pdf: "/papers/handlungslasten-zge.pdf"
+
+- slug: public-rules-of-recognition
+  title: "Public Rules of Recognition of Platform Standards"
+  authors: ["Darius Rostam"]
+  year: 2025
+  type: working-paper
+  areas: [law-and-society, transnational-law]
+  venue: "SSRN Working Paper"
+  language: en
+  openAccess: true
+  ssrn: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5772523"
+  pdf: "/papers/public-rules-of-recognition.pdf"
+
+- slug: vervielfaeltigungen-datensatz-zum
+  title: "(Nur) Zur Zulässigkeit von Vervielfältigungen für die Erstellung eines Datensatzes"
+  authors: ["Darius Rostam", "Linda Kuschel"]
+  year: 2025
+  type: case-note
+  areas: [copyright, ai]
+  venue: "ZUM 2025, 71"
+  language: de
+  openAccess: false
+  url: "https://beck-online.beck.de/Bcid/Y-300-Z-ZUM-B-2025-S-71-N-1"
+
+- slug: urheberrecht-grenze-it-sicherheitsforschung
+  title: "Das Urheberrecht als Grenze der IT-Sicherheitsforschung"
+  authors: ["Darius Rostam"]
+  year: 2023
+  type: chapter
+  areas: [copyright, it-security-law]
+  venue: "in: Golla/Brodowski (Hrsg.), IT-Sicherheitsforschung und IT-Strafrecht, Mohr Siebeck, Tübingen 2023"
+  language: de
+  openAccess: true
+  doi: "10.1628/978-3-16-162184-0"
+  pdf: "/papers/urheberrecht-grenze-it-sicherheitsforschung.pdf"
+
+- slug: evaluierung-urhwissg
+  title: "Die Evaluierung des UrhWissG – Case closed?"
+  authors: ["Darius Rostam", "Linda Kuschel"]
+  year: 2022
+  type: article
+  areas: [copyright]
+  venue: "RuZ 2022, 162"
+  language: de
+  openAccess: false
+  doi: "10.5771/2699-1284-2022-3-162"
+
+- slug: technikverstaendliches-verhalten
+  title: "Das Erfordernis technikverständlichen Verhaltens im Urheberrecht"
+  authors: ["Darius Rostam"]
+  year: 2021
+  type: chapter
+  areas: [copyright]
+  venue: "in: Kuschel/Asmussen/Golla (Hrsg.), Intelligente Systeme – Intelligentes Recht, Nomos, Baden-Baden 2021"
+  language: de
+  openAccess: false
+  doi: "10.5771/9783748925705-107"
+
+- slug: urheberrecht-und-it-sicherheit
+  title: "Urheberrecht und IT-Sicherheit"
+  authors: ["Darius Rostam", "Linda Kuschel"]
+  year: 2021
+  type: chapter
+  areas: [copyright, it-security-law]
+  venue: "in: Ebers/Steinrötter (Hrsg.), Künstliche Intelligenz und smarte Robotik im IT-Sicherheitsrecht, Nomos, Baden-Baden 2021"
+  language: de
+  openAccess: false
+  doi: "10.5771/9783748909989-361"
+
+- slug: cybersecurity-unternehmensleitungsaufgabe
+  title: "Cybersecurity als Unternehmensleitungsaufgabe"
+  authors: ["Bittner", "Guntermann", "Müller", "Rostam"]
+  editorRole: true   # (Hrsg.) — render as "ed." / "Hrsg."
+  year: 2021
+  type: edited-volume
+  areas: [it-security-law]
+  venue: "Nomos, Baden-Baden 2021"
+  language: de
+  openAccess: true
+  doi: "10.5771/9783748927679"
+  pdf: "/papers/cybersecurity-unternehmensleitungsaufgabe.pdf"
+
+- slug: urheberrechtliche-aspekte-rl-2019-770
+  title: "Urheberrechtliche Aspekte der Richtlinie 2019/770"
+  authors: ["Darius Rostam", "Linda Kuschel"]
+  year: 2020
+  type: article
+  areas: [copyright]
+  venue: "CR 2020, 393"
+  language: de
+  openAccess: false
+  doi: "10.9785/cr-2020-360613"
+
+- slug: adblocker
+  title: "Die rechtliche Zulässigkeit von Adblockern"
+  authors: ["Darius Rostam"]
+  year: 2017
+  type: article
+  areas: [copyright, unfair-competition-law, antitrust]
+  venue: "InTeR 2017, 146"
+  language: de
+  openAccess: true
+  url: "https://online.ruw.de/suche/inter/Die-rechtliche-Zulaessigkeit-von-Adblockern-b994ac8002283798c4596f2a44aad441"
+  pdf: "/papers/adblocker.pdf"

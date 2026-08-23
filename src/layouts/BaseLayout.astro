@@ -1,0 +1,115 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE } from '../config';
+
+import tokensCss from '../styles/tokens.css?raw';
+import baseCss from '../styles/base.css?raw';
+import layoutCss from '../styles/layout.css?raw';
+import componentsCss from '../styles/components.css?raw';
+
+interface Props {
+  title: string;
+  description?: string;
+  lang?: 'en' | 'de';
+  image?: string;
+  type?: 'website' | 'article';
+  canonical?: string;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description = SITE.description,
+  lang = 'en',
+  image,
+  type = 'website',
+  canonical,
+  jsonLd,
+  noindex = false,
+} = Astro.props;
+
+const pageTitle = title === SITE.title ? title : `${title} — ${SITE.title}`;
+const canonicalURL = canonical ?? new URL(Astro.url.pathname, SITE.url).toString();
+const ogImage = image ?? new URL('/og/default.png', SITE.url).toString();
+const jsonLdList = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    {noindex && <meta name="robots" content="noindex" />}
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="alternate" type="application/rss+xml" title={SITE.title} href="/rss.xml" />
+
+    <!-- Preload the two above-the-fold faces only -->
+    <link
+      rel="preload"
+      href="/fonts/source-serif-4-latin-wght-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="preload" href="/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+
+    <!-- Open Graph / Twitter -->
+    <meta property="og:type" content={type} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:site_name" content={SITE.title} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    {
+      jsonLdList.map((entry) => (
+        <script is:inline type="application/ld+json" set:html={JSON.stringify(entry)} />
+      ))
+    }
+
+    <!-- Prerender same-origin links on hover/viewport -- no JS, native browser support only -->
+    <script
+      is:inline
+      type="speculationrules"
+      set:html={JSON.stringify({
+        prerender: [{ where: { href_matches: '/*' }, eagerness: 'moderate' }],
+      })}
+    />
+
+    <style set:html={tokensCss}></style>
+    <style set:html={baseCss}></style>
+    <style set:html={layoutCss}></style>
+    <style set:html={componentsCss}></style>
+
+    <!-- Blocking, tiny: applies stored theme before first paint to avoid a flash -->
+    <script is:inline>
+      (function () {
+        try {
+          var stored = localStorage.getItem('theme');
+          if (stored === 'light' || stored === 'dark') {
+            document.documentElement.setAttribute('data-theme', stored);
+          }
+        } catch (e) {}
+      })();
+    </script>
+    <slot name="head" />
+  </head>
+  <body>
+    <a href="#main" class="skip-link">Skip to content</a>
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

@@ -1,0 +1,49 @@
+---
+import { SOCIALS } from '../config';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="page site-footer__row">
+    <div>
+      <p>&copy; {year} Darius Rostam.</p>
+      <ul class="site-footer__links">
+        <li><a href="/now">Now</a></li>
+        <li><a href="/rss.xml">RSS</a></li>
+        <li><a href="/impressum">Impressum</a></li>
+        <li><a href="/datenschutz">Datenschutz</a></li>
+      </ul>
+    </div>
+    <div class="social-icons">
+      <a href={SOCIALS.linkedin} aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path
+            d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.64h.05c.53-1 1.83-2.06 3.77-2.06 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.5c0-1.31-.02-3-1.83-3-1.83 0-2.11 1.43-2.11 2.9V21h-4V9Z"
+          ></path>
+        </svg>
+      </a>
+      <a href={SOCIALS.ssrn} aria-label="SSRN author page" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <path d="M6 2h9l5 5v15H6V2Z"></path>
+          <path d="M15 2v5h5"></path>
+          <path d="M9 13h6M9 16h6M9 10h3" stroke-linecap="round"></path>
+        </svg>
+      </a>
+      <a href={SOCIALS.bluesky} aria-label="Bluesky" target="_blank" rel="me noopener noreferrer">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path
+            d="M12 8.6C10.6 5.9 7.9 3.7 5 3c-.6-.1-1.2.4-1 1.1.6 3 .8 8.6 2.2 10.8 1.6 2.5 4.2 2.6 4.9 2.6 0 0-1.5.7-3.3.7-1.6 0-2.5-.4-3-.7 1.2 2 4 3.5 6.2 3.5 2.2 0 5-1.5 6.2-3.5-.5.3-1.4.7-3 .7-1.8 0-3.3-.7-3.3-.7.7 0 3.3-.1 4.9-2.6 1.4-2.2 1.6-7.8 2.2-10.8.2-.7-.4-1.2-1-1.1-2.9.7-5.6 2.9-7 5.6Z"
+          ></path>
+        </svg>
+      </a>
+      <a href="/rss.xml" aria-label="RSS feed">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <circle cx="5" cy="19" r="1.5" fill="currentColor" stroke="none"></circle>
+          <path d="M4 4a16 16 0 0 1 16 16"></path>
+          <path d="M4 11a9 9 0 0 1 9 9"></path>
+        </svg>
+      </a>
+    </div>
+  </div>
+</footer>

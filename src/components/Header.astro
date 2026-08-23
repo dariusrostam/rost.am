@@ -1,0 +1,36 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+
+const nav = [
+  { href: '/research', label: 'Research' },
+  { href: '/writing', label: 'Writing' },
+  { href: '/talks', label: 'Talks' },
+  { href: '/reading', label: 'Reading' },
+  { href: '/uses', label: 'Uses' },
+  { href: '/now', label: 'Now' },
+  { href: '/about', label: 'About' },
+];
+
+const path = Astro.url.pathname;
+const isActive = (href: string) => path === href || path.startsWith(href + '/');
+---
+
+<header class="site-header">
+  <div class="page site-header__row">
+    <a href="/" class="site-header__name">Darius Rostam</a>
+    <nav aria-label="Main">
+      <ul class="site-header__nav">
+        {
+          nav.map((item) => (
+            <li>
+              <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+    <ThemeToggle />
+  </div>
+</header>
