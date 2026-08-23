@@ -1,0 +1,39 @@
+---
+import { toBibTeX, toRIS, toGermanCitation, toEnglishCitation, type Publication } from '../lib/citations';
+
+interface Props {
+  pub: Publication;
+}
+
+const { pub } = Astro.props;
+
+const formats = [
+  { key: 'german', label: 'German legal citation', text: toGermanCitation(pub) },
+  { key: 'english', label: 'English citation', text: toEnglishCitation(pub) },
+  { key: 'bibtex', label: 'BibTeX', text: toBibTeX(pub) },
+  { key: 'ris', label: 'RIS', text: toRIS(pub) },
+];
+---
+
+<div class="cite-block" data-no-print>
+  <h2 style="font-size: var(--text-lg);">Cite this</h2>
+  <div class="cite-block__list">
+    {
+      formats.map((f) => (
+        <div class="cite-block__item">
+          <div class="cite-block__row">
+            <span class="cite-block__label">{f.label}</span>
+            <button type="button" class="button" data-copy={f.text}>
+              Copy
+            </button>
+          </div>
+          <pre class="cite-block__text">{f.text}</pre>
+        </div>
+      ))
+    }
+  </div>
+</div>
+
+<script>
+  import '../scripts/copy.js';
+</script>

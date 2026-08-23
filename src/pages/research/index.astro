@@ -1,0 +1,63 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FilterBar from '../../components/FilterBar.astro';
+import PublicationCard from '../../components/PublicationCard.astro';
+import { TYPE_LABEL } from '../../lib/citations';
+import { AREA_LABELS, AREA_ORDER } from '../../lib/taxonomy';
+
+const pubs = (await getCollection('publications')).sort((a, b) => b.data.year - a.data.year);
+
+const byYear = new Map<number, typeof pubs>();
+for (const pub of pubs) {
+  const list = byYear.get(pub.data.year) ?? [];
+  list.push(pub);
+  byYear.set(pub.data.year, list);
+}
+const years = Array.from(byYear.keys()).sort((a, b) => b - a);
+
+const areaFacet = {
+  key: 'area',
+  label: 'Area',
+  options: AREA_ORDER.filter((a) => pubs.some((p) => p.data.areas.includes(a as never))).map((value) => ({
+    value,
+    label: AREA_LABELS[value],
+    count: pubs.filter((p) => p.data.areas.includes(value as never)).length,
+  })),
+};
+const typeFacet = {
+  key: 'type',
+  label: 'Type',
+  options: (Object.keys(TYPE_LABEL) as (keyof typeof TYPE_LABEL)[])
+    .filter((t) => pubs.some((p) => p.data.type === t))
+    .map((value) => ({
+      value,
+      label: TYPE_LABEL[value],
+      count: pubs.filter((p) => p.data.type === value).length,
+    })),
+};
+---
+
+<BaseLayout title="Research" description="Publications on copyright, AI and law and technology — monographs, articles, chapters and working papers.">
+  <div class="page prose-width" style="padding-block: var(--space-6) var(--space-8);">
+    <h1>Research</h1>
+    <p>
+      <a class="button" href="/research/all.bib">Download all as BibTeX</a>
+    </p>
+
+    <FilterBar facets={[areaFacet, typeFacet]} searchPlaceholder="Search title, venue, co-authors" />
+
+    <div data-filter-list>
+      {
+        years.map((year) => (
+          <div data-year-group>
+            <h2 class="year-heading">{year}</h2>
+            <ul class="card-list">
+              {byYear.get(year)!.map((pub) => <PublicationCard pub={{ ...pub.data, slug: pub.id }} />)}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</BaseLayout>

@@ -1,0 +1,83 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CiteBlock from '../../components/CiteBlock.astro';
+import { TYPE_LABEL } from '../../lib/citations';
+import { AREA_LABELS } from '../../lib/taxonomy';
+import { SITE } from '../../config';
+
+export async function getStaticPaths() {
+  const pubs = await getCollection('publications');
+  return pubs.map((pub) => ({ params: { slug: pub.id }, props: { pub: pub.data } }));
+}
+
+const { pub } = Astro.props;
+const pageURL = new URL(Astro.url.pathname, SITE.url).toString();
+const pdfURL = pub.pdf ? new URL(pub.pdf, SITE.url).toString() : undefined;
+
+const isArticleLike = pub.type === 'article' || pub.type === 'case-note';
+const journalMatch = isArticleLike ? pub.venue.match(/^([A-Za-zÄÖÜäöüß.]+)/) : null;
+const firstPageMatch = isArticleLike ? pub.venue.match(/,\s*(\d+)/) : null;
+
+const jsonLdType = pub.type === 'monograph' || pub.type === 'edited-volume' ? 'Book' : pub.type === 'chapter' ? 'Chapter' : 'ScholarlyArticle';
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': jsonLdType,
+  name: pub.title,
+  author: pub.authors.map((name: string) => ({ '@type': 'Person', name })),
+  datePublished: String(pub.year),
+  inLanguage: pub.language,
+  ...(pub.doi && { sameAs: `https://doi.org/${pub.doi}` }),
+  ...(pdfURL && { url: pdfURL }),
+  isPartOf: pub.venue,
+};
+---
+
+<BaseLayout
+  title={pub.title}
+  description={`${TYPE_LABEL[pub.type]} — ${pub.venue}`}
+  lang={pub.language}
+  type="article"
+  jsonLd={jsonLd}
+>
+  <Fragment slot="head">
+    <meta name="citation_title" content={pub.title} />
+    {pub.authors.map((name: string) => (
+      <meta name="citation_author" content={name} />
+    ))}
+    <meta name="citation_publication_date" content={String(pub.year)} />
+    {isArticleLike && journalMatch && <meta name="citation_journal_title" content={journalMatch[1]} />}
+    {pub.type === 'chapter' && <meta name="citation_inbook_title" content={pub.venue} />}
+    {firstPageMatch && <meta name="citation_firstpage" content={firstPageMatch[1]} />}
+    {pub.doi && <meta name="citation_doi" content={pub.doi} />}
+    {pdfURL && <meta name="citation_pdf_url" content={pdfURL} />}
+    <meta name="citation_language" content={pub.language} />
+    <meta name="citation_abstract_html_url" content={pageURL} />
+  </Fragment>
+
+  <article class="page prose-width" style="padding-block: var(--space-6) var(--space-8);">
+    <p class="meta">
+      <span class="badge badge--accent">{TYPE_LABEL[pub.type]}</span>
+      <span class="badge" style="margin-left: 0.3em;">{pub.language === 'de' ? 'DE' : 'EN'}</span>
+      {pub.openAccess && <span class="badge" style="margin-left: 0.3em;">Open access</span>}
+    </p>
+    <h1>{pub.title}</h1>
+    <p class="meta">
+      {pub.authors.join(', ')}{pub.editorRole && ' (Hrsg.)'} · {pub.venue}
+    </p>
+    <p class="meta">
+      {pub.areas.map((a: string) => (
+        <span class="badge" style="margin-right: 0.3em;">{AREA_LABELS[a]}</span>
+      ))}
+    </p>
+
+    <p style="margin-top: var(--space-5);">
+      {pub.pdf && <a class="button" href={pub.pdf}>PDF</a>}
+      {pub.doi && <a class="button" href={`https://doi.org/${pub.doi}`} style="margin-left: var(--space-2);">DOI</a>}
+      {pub.ssrn && <a class="button" href={pub.ssrn} style="margin-left: var(--space-2);">SSRN</a>}
+      {pub.url && <a class="button" href={pub.url} style="margin-left: var(--space-2);">Publisher</a>}
+    </p>
+
+    <CiteBlock pub={pub} />
+  </article>
+</BaseLayout>

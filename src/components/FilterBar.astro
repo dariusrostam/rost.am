@@ -1,0 +1,55 @@
+---
+// Shared by /research and /reading (brief §4: "a filter row reusing the
+// publications filter component"). Fully static/server-rendered — the
+// consuming page renders every item unconditionally in the HTML; filters.js
+// is what actually hides/shows and writes the URL query string. Without JS
+// this renders as an inert (but harmless) set of buttons over a complete,
+// crawlable list.
+interface FacetOption {
+  value: string;
+  label: string;
+  count: number;
+}
+
+interface Facet {
+  key: string;
+  label: string;
+  options: FacetOption[];
+}
+
+interface Props {
+  facets: Facet[];
+  searchPlaceholder?: string;
+}
+
+const { facets, searchPlaceholder = 'Search' } = Astro.props;
+---
+
+<div class="filter-bar" data-filter-bar>
+  <div class="filter-bar__search">
+    <label class="visually-hidden" for="filter-search">{searchPlaceholder}</label>
+    <input type="search" id="filter-search" placeholder={searchPlaceholder} data-filter-search />
+  </div>
+  {
+    facets.map((facet) => (
+      <div class="filter-group">
+        <span class="filter-group__label">{facet.label}</span>
+        <div class="filter-group__chips">
+          {facet.options.map((opt) => (
+            <button type="button" class="chip" data-facet={facet.key} data-value={opt.value} aria-pressed="false">
+              {opt.label} <span class="count" data-count>{opt.count}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+    ))
+  }
+  <button type="button" class="button" data-filter-clear>
+    Clear all
+  </button>
+</div>
+<p class="meta filter-status" data-filter-status role="status" aria-live="polite"></p>
+
+<script>
+  import '../scripts/filters.js';
+</script>
