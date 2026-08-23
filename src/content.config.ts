@@ -11,8 +11,6 @@ function publicationsParser(text: string) {
   return parseYaml(text).map((entry: Record<string, unknown>) => ({ ...entry, id: entry.slug }));
 }
 
-// Shared between publications and reading.yaml (brief §4: "area tags (same
-// vocabulary as publications)").
 const AREAS = [
   'copyright',
   'ai',
@@ -25,8 +23,8 @@ const AREAS = [
   'societal-constitutionalism',
 ] as const;
 
-const writing = defineCollection({
-  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/writing' }),
+const blog = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/blog' }),
   schema: z.object({
     title: z.string(),
     date: z.coerce.date(),
@@ -35,16 +33,26 @@ const writing = defineCollection({
     language: z.enum(['de', 'en']),
     draft: z.boolean().default(false),
     description: z.string(),
-    // Cross-posts (brief §2a): set `venue`/`venueUrl` when a piece appeared
-    // elsewhere first. `crosspostMode: 'full'` hosts the full text here with a
-    // banner and an outward canonical; 'stub' shows only a summary + outbound
-    // link and stays self-canonical (nothing here competes with the publisher).
+    // Cross-posts: set `venue`/`venueUrl` when a piece appeared elsewhere
+    // first. `crosspostMode: 'full'` hosts the full text here with a
+    // banner and an outward canonical; 'stub' shows only a summary and an
+    // outbound link and stays self-canonical (nothing here competes with
+    // the publisher).
     venue: z.string().optional(),
     venueUrl: z.string().url().optional(),
     crosspostMode: z.enum(['full', 'stub']).optional(),
     canonical: z.string().url().optional(),
-    // Demo posts exist only to prove the margin-note mechanism (brief §2) and
-    // are excluded from the index/RSS feed.
+    // Kottke-style link posts: a short entry pointing at something
+    // interesting elsewhere (a paper, an article, anything). When `link`
+    // is set, the title links straight out to it instead of just to this
+    // post's own permalink; `linkSource` is an optional short site name
+    // shown as "(via X)". The post still gets its own page (for RSS and a
+    // stable URL to comment on/cite), it's just a different card style in
+    // the index.
+    link: z.string().url().optional(),
+    linkSource: z.string().optional(),
+    // Demo posts exist only to prove the margin-note mechanism and are
+    // excluded from the index/RSS feed.
     demo: z.boolean().default(false),
   }),
 });
@@ -76,55 +84,4 @@ const now = defineCollection({
   }),
 });
 
-const uses = defineCollection({
-  loader: file('uses.yaml'),
-  schema: z.object({
-    name: z.string(),
-    url: z.string().url().optional(),
-    reason: z.string(),
-    category: z.enum(['Writing & research', 'Legal research', 'Dev & automation', 'Hardware', 'Reading & notes']),
-    status: z.enum(['added', 'dropped']).optional(),
-  }),
-});
-
-const talks = defineCollection({
-  loader: file('talks.yaml'),
-  schema: z.object({
-    title: z.string(),
-    event: z.string(),
-    institution: z.string(),
-    place: z.string(),
-    date: z.coerce.date(),
-    type: z.enum(['talk', 'panel', 'lecture', 'workshop', 'conference-organisation']),
-    language: z.enum(['de', 'en']),
-    slides: z.string().optional(),
-    link: z.string().url().optional(),
-    note: z.string().optional(),
-  }),
-});
-
-const teaching = defineCollection({
-  loader: file('teaching.yaml'),
-  schema: z.object({
-    course: z.string(),
-    institution: z.string(),
-    term: z.string(),
-    level: z.string(),
-  }),
-});
-
-const reading = defineCollection({
-  loader: file('reading.yaml'),
-  schema: z.object({
-    title: z.string(),
-    authors: z.array(z.string()),
-    year: z.number(),
-    link: z.string().url().optional(),
-    areas: z.array(z.enum(AREAS)),
-    type: z.enum(['book', 'article', 'report', 'case', 'other']).default('other'),
-    annotation: z.string(),
-    added: z.coerce.date().optional(),
-  }),
-});
-
-export const collections = { writing, publications, now, uses, talks, teaching, reading };
+export const collections = { blog, publications, now };

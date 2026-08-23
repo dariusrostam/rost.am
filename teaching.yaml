@@ -1,9 +1,0 @@
-# The short "Teaching" block on /talks (brief §3). Not mentioned in the brief
-# as needing placeholder entries specifically, but no real data was given
-# either -- replace these. See CONTENT.md for the field reference.
-
-- id: placeholder-course-one
-  course: "LOREM Placeholder Course Title"
-  institution: "LOREM Placeholder Institution"
-  term: "LOREM Term/Year"
-  level: "LOREM e.g. LL.B., LL.M., doctoral seminar"

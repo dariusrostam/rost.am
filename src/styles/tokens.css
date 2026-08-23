@@ -1,7 +1,8 @@
 :root {
-  /* Type */
-  --font-serif: 'Source Serif 4 Variable', 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  /* Type -- modern sans-serif throughout (the 404 judgment page keeps its
+     own serif deliberately; everything else uses this). */
   --font-sans: 'Inter Variable', 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-sans);
 
   --measure: 68ch;
   --measure-narrow: 52ch;
@@ -44,58 +45,58 @@
   --radius: 4px;
   --radius-lg: 8px;
 
-  /* Light theme (default) */
-  --color-bg: #faf8f4;
-  --color-bg-raised: #f2efe9;
-  --color-text: #1c1a17;
-  --color-text-muted: #5c574e;
-  --color-text-faint: #6f6a5f;
-  --color-border: #ddd7ca;
-  --color-border-strong: #b9b2a0;
-  --color-accent: #2b4a6f;
-  --color-accent-strong: #1c344f;
+  /* Light theme (default) -- stark white/black, modern */
+  --color-bg: #ffffff;
+  --color-bg-raised: #f5f5f5;
+  --color-text: #0a0a0a;
+  --color-text-muted: #555555;
+  --color-text-faint: #767676;
+  --color-border: #e5e5e5;
+  --color-border-strong: #cccccc;
+  --color-accent: #1d4ed8;
+  --color-accent-strong: #1739a3;
   --color-accent-contrast: #ffffff;
   --color-focus-ring: #a35a19;
-  --color-chip-bg: #f2efe9;
-  --color-chip-bg-active: #2b4a6f;
+  --color-chip-bg: #f5f5f5;
+  --color-chip-bg-active: #1d4ed8;
   --color-chip-text-active: #ffffff;
-  --color-code-bg: #f0ede6;
+  --color-code-bg: #f5f5f5;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme='light']) {
-    --color-bg: #171512;
-    --color-bg-raised: #201d19;
-    --color-text: #e9e4da;
-    --color-text-muted: #b3ac9d;
-    --color-text-faint: #857e70;
-    --color-border: #383329;
-    --color-border-strong: #4d4638;
-    --color-accent: #8fb4dc;
-    --color-accent-strong: #b9d3ec;
-    --color-accent-contrast: #10202f;
+    --color-bg: #0a0a0a;
+    --color-bg-raised: #161616;
+    --color-text: #f5f5f5;
+    --color-text-muted: #a3a3a3;
+    --color-text-faint: #8a8a8a;
+    --color-border: #2a2a2a;
+    --color-border-strong: #3d3d3d;
+    --color-accent: #7aa2f7;
+    --color-accent-strong: #a8c1fa;
+    --color-accent-contrast: #0a1330;
     --color-focus-ring: #e2a15c;
-    --color-chip-bg: #201d19;
-    --color-chip-bg-active: #8fb4dc;
-    --color-chip-text-active: #10202f;
-    --color-code-bg: #1e1b17;
+    --color-chip-bg: #161616;
+    --color-chip-bg-active: #7aa2f7;
+    --color-chip-text-active: #0a1330;
+    --color-code-bg: #161616;
   }
 }
 
 :root[data-theme='dark'] {
-  --color-bg: #171512;
-  --color-bg-raised: #201d19;
-  --color-text: #e9e4da;
-  --color-text-muted: #b3ac9d;
-  --color-text-faint: #857e70;
-  --color-border: #383329;
-  --color-border-strong: #4d4638;
-  --color-accent: #8fb4dc;
-  --color-accent-strong: #b9d3ec;
-  --color-accent-contrast: #10202f;
+  --color-bg: #0a0a0a;
+  --color-bg-raised: #161616;
+  --color-text: #f5f5f5;
+  --color-text-muted: #a3a3a3;
+  --color-text-faint: #8a8a8a;
+  --color-border: #2a2a2a;
+  --color-border-strong: #3d3d3d;
+  --color-accent: #7aa2f7;
+  --color-accent-strong: #a8c1fa;
+  --color-accent-contrast: #0a1330;
   --color-focus-ring: #e2a15c;
-  --color-chip-bg: #201d19;
-  --color-chip-bg-active: #8fb4dc;
-  --color-chip-text-active: #10202f;
-  --color-code-bg: #1e1b17;
+  --color-chip-bg: #161616;
+  --color-chip-bg-active: #7aa2f7;
+  --color-chip-text-active: #0a1330;
+  --color-code-bg: #161616;
 }

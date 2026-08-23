@@ -57,7 +57,16 @@ const jsonLd = {
   </Fragment>
 
   <article class="page prose-width" style="padding-block: var(--space-6) var(--space-8);">
-    <p class="meta">
+    <img
+      class="pub-hero-image"
+      src={`/og/research/${pub.slug}.png`}
+      width="1200"
+      height="630"
+      loading="eager"
+      decoding="async"
+      alt=""
+    />
+    <p class="meta" style="margin-top: var(--space-5);">
       <span class="badge badge--accent">{TYPE_LABEL[pub.type]}</span>
       <span class="badge" style="margin-left: 0.3em;">{pub.language === 'de' ? 'DE' : 'EN'}</span>
       {pub.openAccess && <span class="badge" style="margin-left: 0.3em;">Open access</span>}
@@ -79,6 +88,6 @@ const jsonLd = {
       {pub.url && <a class="button" href={pub.url} style="margin-left: var(--space-2);">Publisher</a>}
     </p>
 
-    <CiteBlock pub={pub} />
+    <CiteBlock pub={pub} collapsible />
   </article>
 </BaseLayout>

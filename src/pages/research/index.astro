@@ -39,25 +39,26 @@ const typeFacet = {
 ---
 
 <BaseLayout title="Research" description="Publications on copyright, AI and law and technology — monographs, articles, chapters and working papers.">
-  <div class="page prose-width" style="padding-block: var(--space-6) var(--space-8);">
+  <div class="page" style="padding-block: var(--space-6) var(--space-8);">
     <h1>Research</h1>
-    <p>
-      <a class="button" href="/research/all.bib">Download all as BibTeX</a>
-    </p>
 
-    <FilterBar facets={[areaFacet, typeFacet]} searchPlaceholder="Search title, venue, co-authors" />
+    <div class="research-layout">
+      <div data-filter-list class="research-entries">
+        {
+          years.map((year) => (
+            <div data-filter-group>
+              <h2 class="year-heading">{year}</h2>
+              <ul class="card-list card-list--divided">
+                {byYear.get(year)!.map((pub) => <PublicationCard pub={{ ...pub.data, slug: pub.id }} />)}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
 
-    <div data-filter-list>
-      {
-        years.map((year) => (
-          <div data-filter-group>
-            <h2 class="year-heading">{year}</h2>
-            <ul class="card-list">
-              {byYear.get(year)!.map((pub) => <PublicationCard pub={{ ...pub.data, slug: pub.id }} />)}
-            </ul>
-          </div>
-        ))
-      }
+      <aside class="research-filters">
+        <FilterBar facets={[areaFacet, typeFacet]} searchPlaceholder="Search title, venue, co-authors" />
+      </aside>
     </div>
   </div>
 </BaseLayout>

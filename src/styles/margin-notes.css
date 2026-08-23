@@ -83,12 +83,20 @@
     padding: 0;
     border-left: none;
     background: none;
+    font-size: 0.8125rem;
+    line-height: var(--leading-normal);
     transition: top var(--duration-normal) var(--ease);
   }
 
   html.js .margin-note__number {
-    display: block;
-    margin-bottom: 0.2em;
+    margin-right: 0.35em;
+  }
+
+  /* The footnote body is usually a single <p> (block by default) -- force
+     it inline so the text starts right after the number instead of
+     breaking onto its own line underneath it. */
+  html.js .margin-note__body p {
+    display: inline;
   }
 
   /* Not yet positioned by JS -- keep invisible rather than stacked at the

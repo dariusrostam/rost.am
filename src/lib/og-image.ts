@@ -12,13 +12,13 @@ import { join } from 'node:path';
 // import.meta.url or Vite asset import -- both of those resolve to
 // locations that don't survive Astro moving the compiled chunk around
 // during prerendering.
-const regular = readFileSync(join(process.cwd(), 'src/assets/og-fonts/source-serif-4-regular.ttf'));
-const semibold = readFileSync(join(process.cwd(), 'src/assets/og-fonts/source-serif-4-semibold.ttf'));
+const regular = readFileSync(join(process.cwd(), 'src/assets/og-fonts/inter-regular.ttf'));
+const bold = readFileSync(join(process.cwd(), 'src/assets/og-fonts/inter-bold.ttf'));
 
 const WIDTH = 1200;
 const HEIGHT = 630;
 
-/** Simple typographic OG card: title + site kicker, no external service (brief: Quality bar). */
+/** Simple typographic OG card: title + site kicker, no external service. */
 export async function renderOgImage(title: string, kicker = 'rost.am'): Promise<Buffer> {
   const svg = await satori(
     {
@@ -30,15 +30,15 @@ export async function renderOgImage(title: string, kicker = 'rost.am'): Promise<
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
-          background: '#faf8f4',
+          background: '#ffffff',
           padding: '80px',
-          fontFamily: 'Source Serif 4',
+          fontFamily: 'Inter',
         },
         children: [
           {
             type: 'div',
             props: {
-              style: { fontSize: 28, color: '#5c574e', letterSpacing: '0.02em' },
+              style: { fontSize: 28, color: '#555555', letterSpacing: '0.02em' },
               children: kicker,
             },
           },
@@ -47,8 +47,8 @@ export async function renderOgImage(title: string, kicker = 'rost.am'): Promise<
             props: {
               style: {
                 fontSize: title.length > 70 ? 48 : 60,
-                fontWeight: 600,
-                color: '#1c1a17',
+                fontWeight: 700,
+                color: '#0a0a0a',
                 lineHeight: 1.25,
                 display: 'flex',
               },
@@ -58,7 +58,7 @@ export async function renderOgImage(title: string, kicker = 'rost.am'): Promise<
           {
             type: 'div',
             props: {
-              style: { fontSize: 24, color: '#2b4a6f' },
+              style: { fontSize: 24, color: '#1d4ed8', fontWeight: 700 },
               children: 'Darius Rostam',
             },
           },
@@ -69,8 +69,8 @@ export async function renderOgImage(title: string, kicker = 'rost.am'): Promise<
       width: WIDTH,
       height: HEIGHT,
       fonts: [
-        { name: 'Source Serif 4', data: regular, weight: 400, style: 'normal' },
-        { name: 'Source Serif 4', data: semibold, weight: 600, style: 'normal' },
+        { name: 'Inter', data: regular, weight: 400, style: 'normal' },
+        { name: 'Inter', data: bold, weight: 700, style: 'normal' },
       ],
     }
   );

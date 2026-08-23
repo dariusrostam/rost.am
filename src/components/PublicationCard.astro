@@ -11,31 +11,45 @@ const authorLine = pub.authors.join(', ') + (pub.editorRole ? ' (Hrsg.)' : '');
 const search = [pub.title, pub.venue, ...pub.authors].join(' ').toLowerCase();
 // The site has two entries titled "Handlungslasten des Urhebers" (monograph
 // + ZGE article) -- disambiguated at a glance by the type badge + venue line
-// that always render alongside the title (brief §1).
+// that always render alongside the title.
 ---
 
 <li
+  class="pub-card"
   data-filterable
   data-facet-area={pub.areas.join(' ')}
   data-facet-type={pub.type}
   data-search={search}
 >
-  <p class="meta">
-    <span class="badge badge--accent">{TYPE_LABEL[pub.type]}</span>
-    <span class="badge" style="margin-left: 0.3em;">{pub.language === 'de' ? 'DE' : 'EN'}</span>
-    {pub.openAccess && <span class="badge" style="margin-left: 0.3em;">Open access</span>}
-  </p>
-  <h3 style="margin-top: var(--space-1); font-size: var(--text-lg);">
-    <a href={`/research/${pub.slug}/`}>{pub.title}</a>
-  </h3>
-  <p class="meta">{authorLine} · {pub.venue}</p>
-  <p class="meta">
-    {pub.pdf && <a href={pub.pdf}>PDF</a>}
-    {pub.pdf && (pub.doi || pub.ssrn || pub.url) && ' · '}
-    {pub.doi && <a href={`https://doi.org/${pub.doi}`}>DOI</a>}
-    {pub.doi && (pub.ssrn || pub.url) && ' · '}
-    {pub.ssrn && <a href={pub.ssrn}>SSRN</a>}
-    {pub.ssrn && pub.url && ' · '}
-    {pub.url && <a href={pub.url}>Publisher</a>}
-  </p>
+  <a href={`/research/${pub.slug}/`} class="pub-card__image-link" tabindex="-1" aria-hidden="true">
+    <img
+      class="pub-card__image"
+      src={`/og/research/${pub.slug}.png`}
+      width="1200"
+      height="630"
+      loading="lazy"
+      decoding="async"
+      alt=""
+    />
+  </a>
+  <div class="pub-card__body">
+    <p class="meta">
+      <span class="badge badge--accent">{TYPE_LABEL[pub.type]}</span>
+      <span class="badge" style="margin-left: 0.3em;">{pub.language === 'de' ? 'DE' : 'EN'}</span>
+      {pub.openAccess && <span class="badge" style="margin-left: 0.3em;">Open access</span>}
+    </p>
+    <h3 style="margin-top: var(--space-1); font-size: var(--text-lg);">
+      <a href={`/research/${pub.slug}/`}>{pub.title}</a>
+    </h3>
+    <p class="meta">{authorLine} · {pub.venue}</p>
+    <p class="meta">
+      {pub.pdf && <a href={pub.pdf}>PDF</a>}
+      {pub.pdf && (pub.doi || pub.ssrn || pub.url) && ' · '}
+      {pub.doi && <a href={`https://doi.org/${pub.doi}`}>DOI</a>}
+      {pub.doi && (pub.ssrn || pub.url) && ' · '}
+      {pub.ssrn && <a href={pub.ssrn}>SSRN</a>}
+      {pub.ssrn && pub.url && ' · '}
+      {pub.url && <a href={pub.url}>Publisher</a>}
+    </p>
+  </div>
 </li>

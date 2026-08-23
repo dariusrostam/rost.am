@@ -1,5 +1,4 @@
-// Shared vocabulary between /research and /reading (brief §4: "area tags
-// (same vocabulary as publications)").
+// Area vocabulary for /research filtering.
 export const AREA_LABELS: Record<string, string> = {
   copyright: 'Copyright',
   ai: 'AI',

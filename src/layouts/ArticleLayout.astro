@@ -16,6 +16,8 @@ interface Props {
   venueUrl?: string;
   crosspostMode?: 'full' | 'stub';
   canonical?: string;
+  link?: string;
+  linkSource?: string;
   demo?: boolean;
 }
 
@@ -31,8 +33,12 @@ const {
   venueUrl,
   crosspostMode,
   canonical,
+  link,
+  linkSource,
   demo = false,
 } = Astro.props;
+
+const linkHost = link ? new URL(link).hostname.replace(/^www\./, '') : undefined;
 
 const isCrosspost = Boolean(venue);
 const outwardCanonical = isCrosspost && crosspostMode === 'full' ? canonical : undefined;
@@ -64,7 +70,7 @@ const jsonLd = {
   canonical={outwardCanonical}
   jsonLd={jsonLd}
   noindex={demo}
-  image={new URL(`/og/writing/${slug}.png`, SITE.url).toString()}
+  image={new URL(`/og/blog/${slug}.png`, SITE.url).toString()}
 >
   <article class="page prose-width" style="padding-block: var(--space-6) var(--space-8);">
     {demo && (
@@ -80,7 +86,15 @@ const jsonLd = {
     )}
 
     <header style="margin-bottom: var(--space-6);">
-      <h1>{title}</h1>
+      <h1>
+        {link ? (
+          <a href={link} target="_blank" rel="noopener noreferrer">
+            {title} <span aria-hidden="true">↗</span>
+          </a>
+        ) : (
+          title
+        )}
+      </h1>
       <p class="meta">
         <time datetime={date.toISOString()}>{dateFormatter.format(date)}</time>
         {updated && (
@@ -90,6 +104,7 @@ const jsonLd = {
         )}
         {' · '}
         <span class="badge">{language === 'de' ? 'DE' : 'EN'}</span>
+        {link && <span class="badge" style="margin-left: 0.3em;">link{linkSource ? ` · via ${linkSource}` : linkHost ? ` · ${linkHost}` : ''}</span>}
         {tags.map((tag) => <span class="badge" style="margin-left: 0.3em;">{tag}</span>)}
       </p>
     </header>

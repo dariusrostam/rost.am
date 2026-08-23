@@ -2,7 +2,7 @@
 
 One page, every field. See README.md for workflows (how to actually do things); this is just the schema.
 
-## Blog posts — `src/content/writing/*.md` or `*.mdx`
+## Blog posts — `src/content/blog/*.md` or `*.mdx`
 
 | Field           | Required | Notes                                                                 |
 | --------------- | -------- | ---------------------------------------------------------------------- |
@@ -17,6 +17,8 @@ One page, every field. See README.md for workflows (how to actually do things); 
 | `venueUrl`      | no       | the external URL, needed for the "Read at X →" button                |
 | `crosspostMode` | no       | `"full"` (hosted here, canonical points out) or `"stub"` (summary + outbound link only) |
 | `canonical`     | no       | only used when `crosspostMode: full`                                  |
+| `link`          | no       | kottke-style link post — the title links straight out to this URL instead of just the post's own page |
+| `linkSource`    | no       | short site name shown as "via X" next to a `link` post                |
 | `demo`          | no       | marks a demo/test post; excluded from the index and RSS, `noindex`    |
 
 Footnotes: standard Markdown syntax `[^1]` / `[^1]: text` — becomes a margin note automatically, no frontmatter
@@ -48,66 +50,17 @@ needed. `<Aside>` component: `.mdx` files only, needs `import Aside from '../../
   `"in: Golla/Brodowski (Hrsg.), IT-Sicherheitsforschung und IT-Strafrecht, Mohr Siebeck, Tübingen 2023"`.
 - Everything else (monographs, working papers, blog): free text, used as-is.
 
-If a citation looks wrong, check `venue` first — the generators (`src/lib/citations.ts`) expect these shapes.
+If a citation looks wrong, check `venue` first — the generators (`src/lib/citations.ts`) expect these shapes. Each
+entry's page also gets a preview image automatically (a typographic card generated from the title, the same way
+Open Graph cards are) — nothing to configure.
 
-**Areas vocabulary** (shared with `reading.yaml`): `copyright`, `ai`, `it-security-law`, `unfair-competition-law`,
-`antitrust`, `law-and-society`, `transnational-law`, `culture-and-law`, `societal-constitutionalism`.
-
-## `talks.yaml` (repo root)
-
-| Field         | Required | Notes                                                                  |
-| ------------- | -------- | ------------------------------------------------------------------------ |
-| `id`          | yes      | unique, stable slug                                                     |
-| `title`       | yes      |                                                                         |
-| `event`       | yes      |                                                                         |
-| `institution` | yes      |                                                                         |
-| `place`       | yes      |                                                                         |
-| `date`        | yes      | `YYYY-MM-DD`                                                            |
-| `type`        | yes      | `talk` \| `panel` \| `lecture` \| `workshop` \| `conference-organisation` |
-| `language`    | yes      | `en` or `de`                                                            |
-| `slides`      | no       | URL to a slides PDF                                                     |
-| `link`        | no       | URL, e.g. to a recording or event page                                  |
-| `note`        | no       | one line, shown under the entry                                        |
-
-## `teaching.yaml` (repo root)
-
-| Field         | Required | Notes |
-| ------------- | -------- | ----- |
-| `id`          | yes      | unique, stable slug |
-| `course`      | yes      | |
-| `institution` | yes      | |
-| `term`        | yes      | e.g. `"WS 2025/26"` |
-| `level`       | yes      | e.g. `"LL.M."` |
-
-## `reading.yaml` (repo root)
-
-| Field        | Required | Notes                                                            |
-| ------------ | -------- | ------------------------------------------------------------------ |
-| `id`         | yes      | unique, stable slug                                                |
-| `title`      | yes      |                                                                    |
-| `authors`    | yes      | list of names                                                      |
-| `year`       | yes      | number                                                             |
-| `link`       | no       |                                                                    |
-| `areas`      | yes      | same vocabulary as `publications.yaml`, above                     |
-| `type`       | no       | `book` \| `article` \| `report` \| `case` \| `other` (default)     |
-| `annotation` | yes      | one to three sentences, in your voice                             |
-| `added`      | no       | `YYYY-MM-DD` — drives the "New" badge (30 days) and the RSS feed  |
-
-## `uses.yaml` (repo root)
-
-| Field      | Required | Notes                                                                                     |
-| ---------- | -------- | --------------------------------------------------------------------------------------- |
-| `id`       | yes      | unique, stable slug                                                                      |
-| `name`     | yes      |                                                                                           |
-| `url`      | no       |                                                                                           |
-| `reason`   | yes      | one line                                                                                  |
-| `category` | yes      | exactly one of: `Writing & research`, `Legal research`, `Dev & automation`, `Hardware`, `Reading & notes` |
-| `status`   | no       | `added` or `dropped` — shows a small badge                                               |
+**Areas vocabulary**: `copyright`, `ai`, `it-security-law`, `unfair-competition-law`, `antitrust`,
+`law-and-society`, `transnational-law`, `culture-and-law`, `societal-constitutionalism`.
 
 ## `/now` — `src/content/now/now.md`
 
-Single file. Frontmatter is just `updated: YYYY-MM-DD` — **update this every time you edit the body**; the page
-shows a visibly-stale warning past 45 days since that date. Body is plain Markdown.
+Single file. Frontmatter is just `updated: YYYY-MM-DD` — **update this every time you edit the body**; both this
+page and the homepage show a visibly-stale warning past 45 days since that date. Body is plain Markdown.
 
 ## Legal pages
 
