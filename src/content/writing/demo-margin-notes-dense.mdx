@@ -1,0 +1,27 @@
+---
+title: "Demo: Dense Footnote Collisions"
+date: 2026-01-02
+tags: ["demo"]
+language: en
+draft: false
+demo: true
+description: "A demo post with several footnotes clustered on one line, to prove the collision-avoidance stacking logic."
+---
+
+import Aside from '../../components/Aside.astro';
+
+This paragraph exists to cluster several footnotes very close together on purpose,[^1] so that their natural reference points[^2] are only a line or two apart[^3] — close enough that, without collision handling,[^4] the notes in the margin would overlap each other[^5] instead of stacking cleanly with a small gap between them.[^6]
+
+<Aside>This is an `<Aside>` — explicitly placed margin content rather than a footnote. It should take part in the same collision-avoidance stacking as the notes above and below it.</Aside>
+
+Resize the window across roughly 1100px while this page is open: above that width the notes above should be stacked in the right margin without overlapping; below it they should collapse and only expand when their superscript number is tapped, with no jump to the bottom of the page.
+
+One more paragraph, and one more note, further down — to confirm that notes recompute their position correctly after the dense cluster above, rather than permanently pushing everything below them down the page.[^7]
+
+[^1]: First of six footnotes clustered on one line.
+[^2]: Second — this is where collision handling starts to matter.
+[^3]: Third. Still within the same sentence.
+[^4]: Fourth. Their natural positions are nearly identical.
+[^5]: Fifth. Each should be pushed down just enough to clear the one above it.
+[^6]: Sixth and last of the cluster.
+[^7]: A note well after the dense cluster, to confirm layout recovers to normal spacing afterward.

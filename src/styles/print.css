@@ -27,4 +27,24 @@
   .page {
     max-width: none;
   }
+
+  /* Force notes back to plain inline flow regardless of the screen session's
+     .js positioning/collapse state -- print has no viewport to position
+     against, and the result should read as ordinary bottom-of-page-style
+     footnotes rather than absolutely-positioned margin content. */
+  .article-body {
+    display: block !important;
+    max-width: none !important;
+  }
+
+  .margin-note {
+    display: flex !important;
+    position: static !important;
+    grid-column: auto !important;
+    visibility: visible !important;
+    width: auto !important;
+    border-left: 1px solid #000 !important;
+    background: none !important;
+    color: #333 !important;
+  }
 }

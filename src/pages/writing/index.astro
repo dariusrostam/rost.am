@@ -1,0 +1,40 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import NewsletterForm from '../../components/NewsletterForm.astro';
+
+const posts = (await getCollection('writing', ({ data }) => !data.draft && !data.demo)).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+
+const dateFormatter = new Intl.DateTimeFormat('en-GB', { year: 'numeric', month: 'short', day: 'numeric' });
+---
+
+<BaseLayout title="Writing" description="Posts on copyright, AI and law and technology — native pieces and cross-posts from other blogs.">
+  <div class="page prose-width" style="padding-block: var(--space-6) var(--space-8);">
+    <h1>Writing</h1>
+
+    <ul class="card-list">
+      {
+        posts.map((post) => (
+          <li>
+            <p class="meta">
+              <time datetime={post.data.date.toISOString()}>{dateFormatter.format(post.data.date)}</time>
+              {' · '}
+              <span class="badge">{post.data.language === 'de' ? 'DE' : 'EN'}</span>
+              {post.data.venue && <span class="badge badge--accent" style="margin-left: 0.3em;">via {post.data.venue}</span>}
+            </p>
+            <h2 style="margin-top: var(--space-1); font-size: var(--text-lg);">
+              <a href={`/writing/${post.id}/`}>{post.data.title}</a>
+            </h2>
+            <p>{post.data.description}</p>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div style="margin-top: var(--space-8);">
+      <NewsletterForm />
+    </div>
+  </div>
+</BaseLayout>

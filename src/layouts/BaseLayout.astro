@@ -7,6 +7,7 @@ import tokensCss from '../styles/tokens.css?raw';
 import baseCss from '../styles/base.css?raw';
 import layoutCss from '../styles/layout.css?raw';
 import componentsCss from '../styles/components.css?raw';
+import printCss from '../styles/print.css?raw';
 
 interface Props {
   title: string;
@@ -90,10 +91,16 @@ const jsonLdList = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
     <style set:html={baseCss}></style>
     <style set:html={layoutCss}></style>
     <style set:html={componentsCss}></style>
+    <style media="print" set:html={printCss}></style>
 
-    <!-- Blocking, tiny: applies stored theme before first paint to avoid a flash -->
+    <!--
+      Blocking, tiny: applies the stored theme and marks JS as available
+      before first paint, so neither the theme nor the margin-note layout
+      (which depends on an html.js selector) ever visibly changes after load.
+    -->
     <script is:inline>
       (function () {
+        document.documentElement.classList.add('js');
         try {
           var stored = localStorage.getItem('theme');
           if (stored === 'light' || stored === 'dark') {

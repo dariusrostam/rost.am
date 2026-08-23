@@ -1,0 +1,14 @@
+---
+// Explicit margin content (figures, side remarks) — brief §2: "<Aside> MDX
+// component for content I explicitly want in the margin." Reuses the same
+// .margin-note positioning/collision system as footnotes: the zero-size
+// anchor span marks this Aside's natural position in the text, and the
+// aside itself (data-ref-id -> anchor) is what margin-notes.js moves into
+// the margin column. No sup/number, since it wasn't referenced from prose.
+const id = `aside-${Math.random().toString(36).slice(2, 9)}`;
+---
+
+<span id={id} aria-hidden="true" style="display:inline-block;width:0;height:0;"></span>
+<aside class="margin-note" data-ref-id={id}>
+  <span class="margin-note__body"><slot /></span>
+</aside>
