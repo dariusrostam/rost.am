@@ -1,12 +1,13 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import { SITE } from '../config';
-import marginNotesCss from '../styles/margin-notes.css?raw';
+import '../styles/margin-notes.css';
 import NewsletterForm from '../components/NewsletterForm.astro';
 
 interface Props {
   title: string;
   description: string;
+  slug: string;
   date: Date;
   updated?: Date;
   tags?: string[];
@@ -21,6 +22,7 @@ interface Props {
 const {
   title,
   description,
+  slug,
   date,
   updated,
   tags = [],
@@ -62,11 +64,8 @@ const jsonLd = {
   canonical={outwardCanonical}
   jsonLd={jsonLd}
   noindex={demo}
+  image={new URL(`/og/writing/${slug}.png`, SITE.url).toString()}
 >
-  <Fragment slot="head">
-    <style set:html={marginNotesCss}></style>
-  </Fragment>
-
   <article class="page prose-width" style="padding-block: var(--space-6) var(--space-8);">
     {demo && (
       <p class="meta" style="margin-bottom: var(--space-4);">

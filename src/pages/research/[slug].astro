@@ -39,6 +39,7 @@ const jsonLd = {
   lang={pub.language}
   type="article"
   jsonLd={jsonLd}
+  image={new URL(`/og/research/${pub.slug}.png`, SITE.url).toString()}
 >
   <Fragment slot="head">
     <meta name="citation_title" content={pub.title} />

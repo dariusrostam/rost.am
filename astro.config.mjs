@@ -26,6 +26,14 @@ const markdownProcessor = unified({
 // https://astro.build/config
 export default defineConfig({
   site: 'https://rost.am',
+  build: {
+    // tokens/base/layout are inlined by hand (small, needed before first
+    // paint to avoid FOUC/CLS); everything else -- components.css,
+    // margin-notes.css -- should be a real cacheable linked stylesheet
+    // rather than repeated inline text on every page response, to stay
+    // under the brief's 15 KB-per-page CSS budget.
+    inlineStylesheets: 'never',
+  },
   integrations: [
     // MDX's `processor` option documents `config.markdown.processor` as its
     // default but doesn't actually apply it in practice (tested); the plugin

@@ -6,8 +6,11 @@ import { SITE } from '../config';
 import tokensCss from '../styles/tokens.css?raw';
 import baseCss from '../styles/base.css?raw';
 import layoutCss from '../styles/layout.css?raw';
-import componentsCss from '../styles/components.css?raw';
 import printCss from '../styles/print.css?raw';
+// Not ?raw: a real cacheable linked stylesheet (astro.config sets
+// build.inlineStylesheets: 'never') rather than inline text repeated on
+// every page -- components.css is too large to count as "critical".
+import '../styles/components.css';
 
 interface Props {
   title: string;
@@ -90,7 +93,6 @@ const jsonLdList = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
     <style set:html={tokensCss}></style>
     <style set:html={baseCss}></style>
     <style set:html={layoutCss}></style>
-    <style set:html={componentsCss}></style>
     <style media="print" set:html={printCss}></style>
 
     <!--
