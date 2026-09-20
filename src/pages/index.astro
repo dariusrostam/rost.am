@@ -6,7 +6,14 @@ import { SITE, SOCIALS } from '../config';
 import { getStreamEntries } from '../lib/stream';
 
 const { entries: streamEntries, pinnedNote } = await getStreamEntries();
-const ALL_VIEW_LIMIT = 12;
+const FEED_VIEW_LIMIT = 8;
+
+const typeSeen: Partial<Record<(typeof streamEntries)[number]['type'], number>> = {};
+const typeRanks = streamEntries.map((item) => {
+  const seen = typeSeen[item.type] ?? 0;
+  typeSeen[item.type] = seen + 1;
+  return seen < FEED_VIEW_LIMIT ? seen : undefined;
+});
 
 const sameAs = [SOCIALS.linkedin, SOCIALS.ssrn, SOCIALS.bluesky, SOCIALS.orcid].filter(Boolean);
 const jsonLd = {
@@ -83,7 +90,9 @@ const jsonLd = {
       </div>
       <ul class="stream-list" data-feed-list style="margin-top: var(--space-4);">
         {pinnedNote && <StreamCard item={pinnedNote} pinned />}
-        {streamEntries.map((item, index) => <StreamCard item={item} allRank={index < ALL_VIEW_LIMIT ? index : undefined} />)}
+        {streamEntries.map((item, index) => (
+          <StreamCard item={item} allRank={index < FEED_VIEW_LIMIT ? index : undefined} typeRank={typeRanks[index]} />
+        ))}
       </ul>
       <p class="feed-browse" data-feed-browse="research" hidden>
         <a href="/research/">Browse all research →</a>

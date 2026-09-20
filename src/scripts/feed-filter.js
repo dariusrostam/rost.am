@@ -17,7 +17,7 @@
     const allow = ALLOW[filter];
     items.forEach((item) => {
       item.hidden = allow
-        ? !allow.includes(item.dataset.type)
+        ? !allow.includes(item.dataset.type) || item.dataset.typeRank === undefined
         : item.dataset.allRank === undefined && !item.classList.contains('feed-card--pinned');
     });
     browseLinks.forEach((link) => {

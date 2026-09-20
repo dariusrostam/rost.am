@@ -8,9 +8,10 @@ interface Props {
   item: StreamEntry;
   pinned?: boolean;
   allRank?: number;
+  typeRank?: number;
 }
 
-const { item, pinned = false, allRank } = Astro.props;
+const { item, pinned = false, allRank, typeRank } = Astro.props;
 
 const TYPE_LABEL: Record<StreamEntry['type'], string> = {
   note: 'Note',
@@ -62,7 +63,7 @@ if (item.type === 'blogpost') {
 const linkHost = external && href && item.type !== 'bluesky' ? new URL(href).hostname.replace(/^www\./, '') : undefined;
 ---
 
-<li class="feed-card" class:list={{ 'feed-card--pinned': pinned }} data-type={item.type} data-all-rank={allRank}>
+<li class="feed-card" class:list={{ 'feed-card--pinned': pinned }} data-type={item.type} data-all-rank={allRank} data-type-rank={typeRank}>
   <p class="feed-meta">
     <span class="feed-chip">{TYPE_LABEL[item.type]}</span>
     {
