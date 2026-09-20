@@ -22,15 +22,6 @@
   font-family: var(--font-sans);
 }
 
-.site-header__name {
-  font-family: var(--font-serif);
-  font-size: var(--text-lg);
-  font-variation-settings: 'wght' 600;
-  color: var(--color-text);
-  text-decoration: none;
-  white-space: nowrap;
-}
-
 .site-header__nav {
   display: flex;
   flex-wrap: wrap;
@@ -68,21 +59,8 @@
 .site-footer__row {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: var(--space-4);
-}
-
-.site-footer__links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-3) var(--space-4);
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.site-footer__links a {
-  color: var(--color-text-muted);
 }
 
 .social-icons {

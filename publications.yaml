@@ -21,6 +21,28 @@
   openAccess: true
   ssrn: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6163107"
   pdf: "/papers/opt-outs-in-copyright-law.pdf"
+  thumbnail: "/papers/thumbs/opt-outs-in-copyright-law.jpg"
+  abstract: >-
+    The use of copyright-protected works for AI training has thrust opt-out schemes into the center of copyright
+    discourse. Unlike conventional copyright rules requiring prior authorization, opt-out schemes permit uses by
+    default unless rightholders affirmatively object, effectively reversing copyright's traditional logic of
+    exclusivity. This Article provides the first comprehensive analysis of opt-out mechanisms in copyright law.
+    Adopting a comparative perspective examining both US and EU copyright frameworks, it traces existing precedents
+    ranging from copyright restoration to search engines, mass digitization projects, and online platform
+    liability. The Article argues that opt-out schemes serve two principal functions: preserving rightholder
+    autonomy through flexible "loperty rules" that combine elements of property and liability rules, and
+    controlling user infringement risk by forcing rightholders to disclose information necessary for transactions.
+    However, these functions depend on two conditions: rightholders must be aware of both the use and their
+    opt-out option, and the opt-out mechanism must be feasible with reasonable effort. Where these conditions are
+    met, opt-outs can positively influence the fair use analysis, particularly factors one and four, by supporting
+    an inference that a missing opt-out indicates no meaningful threat of substitution. Similarly, under the
+    international three-step test, opt-outs help ensure compliance by preventing conflicts with normal
+    exploitation and unreasonable prejudice to legitimate interests. Applying this framework to AI training under
+    Article 4 DSM Directive and pending US litigation, this Article demonstrates that current opt-out regimes fail
+    to meet these conditions. Rightholders often lack awareness, opt-out standards provide insufficient
+    granularity, and many works are uploaded by third parties beyond rightholders' control. Consequently, while
+    opt-out schemes have legitimate doctrinal foundations, their application to generative AI training is
+    currently dysfunctional.
 
 - slug: web-scraping-in-culture-and-law
   title: "Web Scraping in Culture and Law"
@@ -33,6 +55,20 @@
   openAccess: true
   ssrn: "https://ssrn.com/abstract=6158429"
   pdf: "/papers/web-scraping-in-culture-and-law.pdf"
+  thumbnail: "/papers/thumbs/web-scraping-in-culture-and-law.jpg"
+  abstract: >-
+    This article examines the practice of web scraping through its under-illuminated cultural dimension. It
+    situates scraping within internet culture, identifying semiotic markers of both openness and enclosure. Web
+    scraping occupies an ambivalent position between these cultures, laden with symbols invoking both trespass and
+    free access. The article analyzes how these cultural formations have historically shaped legal outcomes by
+    identifying recurring argumentative narratives around privacy and authorization that reflect the cultural
+    logics embedded in the law of web scraping. It demonstrates that cultural assumptions that supported a
+    permissive legal treatment in the past do not hold for contemporary practices of AI training data collection.
+    Yet the law has not itself enforced any particular culture — it merely demands that data hosts who wish to
+    prevent scraping coherently signal their intent to enclose, while allowing both cultures to coexist. This
+    antihegemonic stance proves increasingly untenable, complicated by the fact that both data hosts as well as AI
+    companies operate as hybrids of openness and enclosure. The article advocates instead for explicit legal
+    enforcement of either openness or enclosure.
 
 - slug: wieder-nur-vervielfaeltigungen-laion
   title: "(Wieder nur) Zur Zulässigkeit von Vervielfältigungen für die Erstellung eines Datensatzes – zugleich Besprechung von OLG Hamburg, Urt. v. 10.12.2025 – 5 U 104/24 – LAION"
@@ -44,6 +80,16 @@
   language: de
   openAccess: false
   url: "https://beck-online.beck.de/Bcid/Y-300-Z-GRUR-B-2026-S-376-N-1"
+  thumbnail: "/papers/thumbs/wieder-nur-vervielfaeltigungen-laion.jpg"
+  abstract: >-
+    Die erstinstanzliche Entscheidung des LG Hamburg in der Sache „LAION" ist auf ein großes Echo gestoßen. Das
+    OLG Hamburg hat nun die Berufung des Klägers zurückgewiesen, gleichzeitig sein Urteil aber auf eine andere,
+    tragfähigere Begründung gestützt. So arbeitet es bei der Erklärungsbefugnis für den Text und Data Mining
+    (TDM)-Vorbehalt und den Anforderungen an die Maschinenlesbarkeit in § 44b Abs. 3 UrhG differenziertere Maßstäbe
+    heraus und trennt bei § 60d UrhG klarer zwischen sachlichem und persönlichem Anwendungsbereich. Besondere
+    Aufmerksamkeit verdienen die eingehende Prüfung des Drei-Stufen-Tests sowie die Frage, inwieweit Fernwirkungen
+    auf nachgelagerten Gliedern der KI-Wertschöpfungskette bei der Beurteilung der konkreten
+    Vervielfältigungshandlung zu berücksichtigen sind.
 
 - slug: zum-umgang-mit-umgehung
   title: "Zum Umgang mit Umgehung – Anmerkung zu Generalanwalt beim EuGH, Schlussanträge vom 15.1.2026 – C-788/24 – Anne Frank Fonds"
@@ -55,6 +101,18 @@
   language: de
   openAccess: false
   url: "https://beck-online.beck.de/Bcid/Y-300-Z-ZUM-B-2026-S-535-N-1"
+  pdf: "/papers/zum-umgang-mit-umgehung.pdf"
+  thumbnail: "/papers/thumbs/zum-umgang-mit-umgehung.jpg"
+  abstract: >-
+    Generalanwalt Rantos hat in der Rechtssache Anne Frank Fonds (C-788/24) Schlussanträge dazu vorgelegt, wie die
+    öffentliche Wiedergabe im Internet zu lokalisieren ist. Er verneint zwar ein Ausrichtungserfordernis als
+    Tatbestandsvoraussetzung, nimmt aber wirksames Geoblocking vom Tatbestand aus; die bloße Möglichkeit einer
+    Umgehung durch VPN-Dienste soll daran nichts ändern. Der Beitrag zeigt, dass diese Lösung faktisch zu einer
+    Geoblocking-Pflicht für jede Veröffentlichung im Internet führt und der EuGH stattdessen das im Markenrecht, im
+    Datenbankherstellerrecht und für das Recht der öffentlichen Wiedergabe aus der Vermiet- und Verleih-Richtlinie
+    bereits etablierte Ausrichtungskriterium heranziehen sollte; Zustimmung verdienen die Schlussanträge dagegen,
+    soweit sie die bloße Umgehungsmöglichkeit für die Annahme einer Wiedergabehandlung im gesperrten Gebiet nicht
+    ausreichen lassen.
 
 - slug: targeting-the-right-question
   title: "Targeting the Right Question: What AG Rantos Left Open in Anne Frank Fonds"
@@ -66,6 +124,17 @@
   language: en
   openAccess: true
   url: "https://legalblogs.wolterskluwer.com/copyright-blog/targeting-the-right-question-what-ag-rantos-left-open-in-anne-frank-fonds/"
+  thumbnail: "/papers/thumbs/targeting-the-right-question.jpg"
+  abstract: >-
+    This piece analyzes AG Rantos's Opinion in Anne Frank Fonds (C-788/24), on how to localize communication to the
+    public online when a work is protected in one EU state but not in another. While welcoming the Opinion's
+    conclusion that effective geoblocking keeps a publication outside Article 3(1) InfoSoc Directive, and that mere
+    VPN circumvention doesn't change that, the piece argues that AG Rantos should not have sidestepped the Dutch
+    Supreme Court's central question: whether communication to the public requires the content to be "targeted" at
+    a state's audience — a test the CJEU already applies in trademark law, the database right, and the
+    distribution right. A targeting test would better balance rightholder and user interests than the proposed
+    accessibility-plus-geoblocking-exception model, particularly for libraries, archives, and museums that often
+    don't know a work remains protected elsewhere.
 
 - slug: ai-companions-regulierung
   title: "Wenn künstliche Liebe gefährlich wird: Regulierung von AI Companions"
@@ -77,6 +146,11 @@
   language: de
   openAccess: true
   url: "https://www.lto.de/recht/hintergruende/h/regulierung-ai-companions-kuenstliche-liebe-regulierung"
+  thumbnail: "/papers/thumbs/ai-companions-regulierung.jpg"
+  abstract: >-
+    Menschen entwickeln Gefühle für Sprachmodelle: AI Companions beeinflussen das Nutzerverhalten massiv. Die EU
+    will das regulieren, doch ihre KI-Verordnung greift zu kurz – ein Befund, den ich gemeinsam mit Tarmio Frei und
+    Greta Sparzynski in diesem Beitrag für Legal Tribune Online (LTO) herausarbeite.
 
 - slug: handlungslasten-des-urhebers
   title: "Handlungslasten des Urhebers"
@@ -89,6 +163,16 @@
   openAccess: true
   doi: "10.1628/978-3-16-164546-4"
   pdf: "/papers/handlungslasten-des-urhebers.pdf"
+  thumbnail: "/papers/thumbs/handlungslasten-des-urhebers.png"
+  abstract: >-
+    Der Normalfall des Urheberrechts ist die Ausschließlichkeit. Grundsätzlich ist die Nutzung von Werken
+    verboten, außer der Urheber erlaubt sie. Es liegt deshalb am Nutzer, eine Erlaubnis einzuholen. In jüngerer
+    Zeit lassen sich allerdings Tendenzen feststellen, die von diesem Grundsatz abweichen. Nutzungen sind demnach
+    erlaubt, außer der Urheber verbietet sie. Urheber tragen folglich die Last, Nutzungen aktiv zu untersagen.
+    Darius Rostam untersucht Anwendungsfälle solcher Handlungslasten des Urhebers, legt ihre Grundstruktur offen
+    und entwickelt eine kontextneutrale Dogmatik der Rechtsfigur der Handlungslast im Urheberrecht. Unter
+    Zuhilfenahme der ökonomischen Analyse des Rechts und Methoden einer soziologischen Jurisprudenz ergibt sich
+    ein allgemeiner Maßstab für die Zulässigkeit und Zweckmäßigkeit von Handlungslasten des Urhebers.
 
 - slug: handlungslasten-zge
   title: "Handlungslasten des Urhebers"
@@ -101,6 +185,24 @@
   openAccess: true
   doi: "10.1628/zge-2025-0022"
   pdf: "/papers/handlungslasten-zge.pdf"
+  thumbnail: "/papers/thumbs/handlungslasten-zge.png"
+  abstract: >-
+    Copyright's paradigm is exclusivity. Generally, a use requires prior permission of the rightsholder – it is up
+    to the user to obtain it. Recently, however, there have been tendencies to deviate from this norm. In such
+    cases, a use is generally permitted unless the rightsholder prohibits it. Rightsholders therefore bear the
+    burden of opting out of otherwise lawful uses. Based on the author's dissertation, this article examines the
+    question of when it is reasonable and lawful to impose such burden on rightsholders. German and EU copyright
+    law employ 16 use cases of opt-out schemes. The analysis shows that all use cases presuppose that there is a
+    transaction cost problem and the objective interests of the parties lean towards allowing such uses without
+    individual transactions. The function of an opt-out scheme is then to adapt the exclusive rights to these
+    circumstances through a flexible form of entitlement called a loperty rule. Under this rule, the cost of
+    establishing a lawful use is reallocated to the rightsholder as the cheapest cost avoider. The article then
+    examines the standing of such opt-out schemes under international copyright rules, i.e. the prohibition of
+    formalities and the Three-Step test. It shows that most opt-out schemes will not qualify as a formality and
+    are also able to ease compliance of limitations and exceptions with the Three-Step test. Finally, the article
+    develops a set of criteria to evaluate existing and future opt-out schemes for their reasonableness and
+    lawfulness. If applied to the opt-out rules around the training of generative AI models, it becomes apparent
+    that opt-out schemes do not meet the necessary conditions to be effective in this context.
 
 - slug: public-rules-of-recognition
   title: "Public Rules of Recognition of Platform Standards"
@@ -113,6 +215,19 @@
   openAccess: true
   ssrn: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5772523"
   pdf: "/papers/public-rules-of-recognition.pdf"
+  thumbnail: "/papers/thumbs/public-rules-of-recognition.jpg"
+  abstract: >-
+    The distinct normative quality of platform standards provides for conflict with the normative claims of
+    national legal systems. Now that a first wave of legislation and litigation concerning such standards has
+    subsided, the paper investigates how state-based legal systems respond to, recognize or constrain the
+    normative orders that platforms built. In a first step, it applies the concept of transnational law to the
+    standards set by digital platforms, situating platform governance within a theoretical framework that
+    recognizes the global reach and normative force of these standards. In a second step, the paper shifts the
+    focus from the platforms' normative orders to the way public legal systems respond to and recognize those
+    orders. Drawing on a variety of legislative and judicial responses from the EU and the US it explores the
+    abstract criteria under which state-based laws and courts acknowledge platform standards as a form of
+    normative ordering. From the analysis, elements of so-called public rules of recognition emerge that indicate
+    when platform standards may coexist alongside national legal frameworks as a distinct normative order.
 
 - slug: vervielfaeltigungen-datensatz-zum
   title: "(Nur) Zur Zulässigkeit von Vervielfältigungen für die Erstellung eines Datensatzes"
@@ -124,6 +239,18 @@
   language: de
   openAccess: false
   url: "https://beck-online.beck.de/Bcid/Y-300-Z-ZUM-B-2025-S-71-N-1"
+  pdf: "/papers/vervielfaeltigungen-datensatz-zum.pdf"
+  thumbnail: "/papers/thumbs/vervielfaeltigungen-datensatz-zum.jpg"
+  abstract: >-
+    Anders als vielfach dargestellt betraf die vielbeachtete Entscheidung des LG Hamburg in Sachen Kneschke ./.
+    LAION nicht das Training generativer KI als solches, sondern die Vervielfältigung eines Lichtbilds zum Abgleich
+    mit einer aus dem Common-Crawl-Datensatz übernommenen Bildbeschreibung. Das Gericht wies die Klage über § 60d
+    UrhG (TDM zu wissenschaftlichen Zwecken) ab, obwohl es die Anwendbarkeit der Schranke auf KI-Training insgesamt
+    offenließ und sich dieser Frage dennoch in umfangreichen obiter dicta widmete. Der Beitrag kritisiert, dass das
+    Gericht LAION zu Unrecht schon wegen der späteren Nutzung des Datensatzes durch Dritte als Forschungsorganisation
+    einordnet, und zeigt für den maschinenlesbaren Nutzungsvorbehalt nach § 44b Abs. 3 UrhG auf, dass das Gericht
+    allein auf die technischen Möglichkeiten der Nutzer abstellt und zumutbare Erklärungsmittel der Rechtsinhaber
+    unberücksichtigt lässt.
 
 - slug: urheberrecht-grenze-it-sicherheitsforschung
   title: "Das Urheberrecht als Grenze der IT-Sicherheitsforschung"
@@ -136,6 +263,12 @@
   openAccess: true
   doi: "10.1628/978-3-16-162184-0"
   pdf: "/papers/urheberrecht-grenze-it-sicherheitsforschung.pdf"
+  thumbnail: "/papers/thumbs/urheberrecht-grenze-it-sicherheitsforschung.png"
+  abstract: >-
+    Computerprogramme sind ein zentrales Objekt von IT-Sicherheitsforschung, zugleich aber auch Schutzgegenstand
+    des Urheberrechts. Dass bestimmte Nutzungen deshalb Rechtsinhabern vorbehalten sind, kann
+    IT-Sicherheitsforschung beeinträchtigen. Wo Konflikte zwischen Urheberrecht und IT-Sicherheitsforschung
+    auftreten und wie sie unter dem geltenden Recht aufgelöst werden können, ist Gegenstand dieses Beitrags.
 
 - slug: evaluierung-urhwissg
   title: "Die Evaluierung des UrhWissG – Case closed?"
@@ -147,6 +280,33 @@
   language: de
   openAccess: false
   doi: "10.5771/2699-1284-2022-3-162"
+  pdf: "/papers/evaluierung-urhwissg.pdf"
+  thumbnail: "/papers/thumbs/evaluierung-urhwissg.png"
+  abstract: >-
+    Bildung und Forschung stellen an das Urheberrecht besondere Anforderungen. Zum einen entstehen
+    wissenschaftliche Werke, die vor allem für Bildung und Forschung relevant sind, häufig nicht allein aus
+    ökonomischen Motiven. Wissenschaftler versprechen sich durch Veröffentlichungen Reputationsgewinne und ihre
+    Forschung ist in der Regel institutionell finanziert. Die Gefahr einer Unterproduktion von Werken besteht in
+    der Wissenschaft deshalb nicht im selben Maße wie in anderen Bereichen – vielmehr spielen ökonomische
+    Interessen erst im Rahmen der Distribution eine Rolle. Zum anderen sind Nutzer in Bildung und Wissenschaft auf
+    einen Zugang zu Werken besonders angewiesen: Unterricht bedarf einer (nicht notwendigerweise
+    vergütungsfreien) Nutzungsmöglichkeit fremder Werke, um vorhandenes Wissen im Interesse gesellschaftlichen
+    Fortschritts weiter zu vermitteln. Die Wissenschaft folgt dem Ideal des freien wissenschaftlichen Diskurses,
+    der eine schnelle Verfügbarkeit von meist nicht-substituierbaren Erkenntnissen verlangt. Die Interessen von
+    Wissenschaftlern als Urheber und als Nutzer fallen deshalb zusammen; Verlage wollen dagegen ihre Kosten im
+    Zusammenhang mit der Publikation und Verbreitung amortisieren. Mit dem „Gesetz zur Angleichung des
+    Urheberrechts an die aktuellen Erfordernisse der Wissensgesellschaft (Urheberrechts-Wissensgesellschafts-Gesetz
+    – UrhWissG)", das am 1. März 2018 in Kraft trat, hat der Gesetzgeber einen neuen Versuch für diesen
+    Interessenausgleich unternommen. Das UrhWissG versammelte erstmals Schranken für Bildung, Wissenschaft und
+    Institutionen in einem eigenen Unterabschnitt in den §§ 60a–60h UrhG. Es war zunächst auf fünf Jahre befristet
+    (§ 142 Abs. 2 UrhG a.F.) und sollte in seinen Auswirkungen nach vier Jahren durch die Bundesregierung evaluiert
+    werden (§ 142 Abs. 1 UrhG). Am 4. Mai 2022 hat das Bundeskabinett den Evaluierungsbericht zum UrhWissG
+    beschlossen und veröffentlicht. Er stellt dem Gesetz insgesamt ein positives Zeugnis aus. Kann die Akte
+    „Urheberrecht für Bildung und Forschung" damit geschlossen werden? Zur Beantwortung dieser Frage geht der
+    Beitrag in drei Schritten vor: Zunächst nimmt er kurz die Rechtslage vor Inkrafttreten des UrhWissG in den
+    Blick. Anschließend stellt der Beitrag Anspruch und Wirklichkeit des Gesetzes gegenüber. Schließlich zeigt er
+    fünf Bereiche auf, in denen der Gesetzgeber die Rechtslage für Bildung und Forschung mit geringem Aufwand
+    entscheidend verbessern könnte.
 
 - slug: technikverstaendliches-verhalten
   title: "Das Erfordernis technikverständlichen Verhaltens im Urheberrecht"
@@ -158,6 +318,23 @@
   language: de
   openAccess: false
   doi: "10.5771/9783748925705-107"
+  thumbnail: "/papers/thumbs/technikverstaendliches-verhalten.jpg"
+  abstract: >-
+    Die Durchsetzung des Urheberrechts wird zunehmend an Mitwirkungsobliegenheiten der Rechtsinhaber geknüpft.
+    Dabei verschiebt sich die Handlungslast von den Nutzern hin zu den Rechtsinhabern, die zusätzliche
+    Voraussetzungen erfüllen müssen, um ihr üblicherweise unbedingtes Verbotsrecht ausüben zu können. Diese
+    Prozeduralisierung reduziert für Nutzer sowohl prohibitive Transaktionskosten als auch das Risiko
+    unbeabsichtigter Rechtsverletzungen. Gleichzeitig ermöglicht sie ein stärker differenziertes Urheberrecht,
+    indem die Zuordnung von Befugnissen flexibler gestaltet wird. In den Anwendungsfällen können Rechtsinhaber
+    ihrer Handlungslast jedoch nur durch technikverständliches Verhalten nachkommen. Dies begrenzt menschliche
+    Entscheidungsfreiräume zugunsten maschineller Logik und birgt das Risiko, technische Gegebenheiten
+    unreflektiert als normative Vorgaben zu interpretieren. Solche Anforderungen an technikverständliches
+    Verhalten sind jedoch legitimiert, wenn Rechtsinhaber die entstehenden Kosten am effizientesten vermeiden
+    können und sich freiwillig in bestimmte Verkehrskreise begeben. Ob das Vertrauen dieser Verkehrskreise in die
+    Rechtmäßigkeit von Nutzungen schutzwürdig ist, hängt davon ab, wie sehr sie auf das technikverständliche
+    Verhalten der Rechtsinhaber angewiesen sind und ob sie darauf vertrauen können, dass Rechtsinhaber die
+    Möglichkeit zur Weitergabe kontrollieren. Auf diese Weise kann das Urheberrecht an die Erwartungen seiner
+    Umwelt angepasst werden, ohne sich blind normativen Ansprüchen der Technik zu unterwerfen.
 
 - slug: urheberrecht-und-it-sicherheit
   title: "Urheberrecht und IT-Sicherheit"
@@ -166,9 +343,27 @@
   type: chapter
   areas: [copyright, it-security-law]
   venue: "in: Ebers/Steinrötter (Hrsg.), Künstliche Intelligenz und smarte Robotik im IT-Sicherheitsrecht, Nomos, Baden-Baden 2021"
+  shortVenue: "Ebers/Steinrötter (Hrsg.)"
   language: de
   openAccess: false
   doi: "10.5771/9783748909989-361"
+  thumbnail: "/papers/thumbs/urheberrecht-und-it-sicherheit.jpg"
+  abstract: >-
+    Das Urheberrecht wirkt in mehrfacher Hinsicht auf die IT-Sicherheit ein: Zum einen kann es durch seinen
+    Schutzanspruch Innovationen in der Sicherheitstechnologie fördern, sei es direkt oder indirekt. Zum anderen
+    unterwirft es Maßnahmen zum Schutz von IT-Systemen, die urheberrechtlich geschützte Inhalte betreffen, der
+    Zustimmung der Rechteinhaber. Dieser Beitrag untersucht daher die Bedeutung des Urheberrechts im Kontext des
+    IT-Sicherheitsrechts, mit einem besonderen Fokus auf moderne Anwendungsfelder wie Künstliche Intelligenz und
+    smarte Robotik. Der Beitrag zeigt auf, dass das Urheberrecht verschiedene Wege bietet, um den Schutz von
+    IT-Systemen zu gewährleisten. Obwohl die Zielsetzungen des Urheberrechts und des IT-Sicherheitsrechts oft
+    divergieren, ergeben sich positive Effekte etwa aus dem Datenbankherstellerrecht und dem Schutz technischer
+    Schutzmaßnahmen. Gleichzeitig kann das Urheberrecht jedoch auch Barrieren für ein höheres IT-Sicherheitsniveau
+    schaffen, wenn es die Umsetzung von Sicherheitsmaßnahmen an die Einwilligung des Urhebers knüpft. Das betrifft
+    insbesondere den Zugriff auf Software zur Analyse oder die Umgehung technischer Schutzmaßnahmen. Dennoch
+    existieren Ansätze, die diese Einschränkungen abfedern können. Zusätzlich trägt das Urheberrecht durch
+    gezielte Anreize zur Förderung der IT-Sicherheit bei. Es etabliert Haftungsregeln, die bestimmte
+    Verhaltensweisen im Sicherheitsbereich fördern, und es schützt Investitionen in Künstliche Intelligenz, die
+    dazu beitragen kann, Sicherheitslücken zu schließen und Angriffe abzuwehren.
 
 - slug: cybersecurity-unternehmensleitungsaufgabe
   title: "Cybersecurity als Unternehmensleitungsaufgabe"
@@ -182,6 +377,22 @@
   openAccess: true
   doi: "10.5771/9783748927679"
   pdf: "/papers/cybersecurity-unternehmensleitungsaufgabe.pdf"
+  thumbnail: "/papers/thumbs/cybersecurity-unternehmensleitungsaufgabe.jpg"
+  abstract: >-
+    Cybersecurity ist in einer digitalen Wirtschaft eine zentrale Herausforderung nahezu jedes Unternehmens. Die
+    steigende Anzahl an Cyberattacken zeigt ein massiv zunehmendes Bedrohungspotential. Unternehmen stehen dabei
+    vor unterschiedlichen Herausforderungen: Zum einen müssen sie ihre Handlungs- und Wettbewerbsfähigkeit vor
+    Industriespionage, Hacking und Schadsoftware schützen. Zum anderen tragen sie, insbesondere in kritischen
+    Infrastrukturen oder im Umgang mit personenbezogenen Daten, Pflichten gegenüber Dritten und dem Staat. Diese
+    Verantwortung liegt letztlich bei den Geschäftsleitern, die wirtschaftliche Aspekte abwägen,
+    Allgemeininteressen berücksichtigen und sich durch eine Vielzahl gesetzlicher Regelungen navigieren müssen –
+    eine hochkomplexe Aufgabe, die mit erheblichen Schadens- und Haftungsrisiken verbunden ist. Der vorliegende
+    Tagungsband dokumentiert die virtuelle Tagung „Cybersecurity als Unternehmensleitungsaufgabe", die in
+    Kooperation mit der Friedrich-Naumann-Stiftung für die Freiheit am 23. und 24. Oktober 2020 an der Bucerius
+    Law School in Hamburg stattfand. Die Tagung beleuchtete aus interdisziplinärer Perspektive die Probleme und
+    Risiken, denen Unternehmen und ihre Geschäftsleiter im Umgang mit Cyberattacken ausgesetzt sind. Der Band
+    enthält Beiträge von Gerald Spindler, Sarah Schmidt-Versteyl, Alexander Brüggemeier und Dennis-Kenji Kipker
+    sowie ausgewählte Einsendungen von Katrin Haußmann, Isabella Risini und Andreas Beyer.
 
 - slug: urheberrechtliche-aspekte-rl-2019-770
   title: "Urheberrechtliche Aspekte der Richtlinie 2019/770"
@@ -193,15 +404,38 @@
   language: de
   openAccess: false
   doi: "10.9785/cr-2020-360613"
+  pdf: "/papers/urheberrechtliche-aspekte-rl-2019-770.pdf"
+  thumbnail: "/papers/thumbs/urheberrechtliche-aspekte-rl-2019-770.jpg"
+  abstract: >-
+    Die Richtlinie über bestimmte vertragsrechtliche Aspekte der Bereitstellung digitaler Inhalte und digitaler
+    Dienstleistungen (DID-RL) soll laut Art. 3 Abs. 9 und Erwägungsgrund 36 das Urheberrecht unberührt lassen. Ihr
+    Anwendungsbereich erstreckt sich jedoch auf Gegenstände, die nahezu immer urheber- oder
+    leistungsschutzrechtlich geschützt sind. Obwohl sie primär das Vertragsverhältnis zwischen Diensteanbieter
+    (Unternehmer) und Nutzer (Verbraucher) regelt, wird aus urheberrechtlicher Perspektive ein weiterer Akteur
+    relevant: der (Urheber-)Rechtsinhaber. Die Konkretisierung von Rechten und Pflichten zwischen Diensteanbieter
+    und Verbraucher durch die Richtlinie führt zu Regelungen, die urheberrechtliche Aspekte tangieren und damit
+    mittelbar die Vertragsfreiheit der Rechteinhaber beeinflussen können. Der Beitrag untersucht die
+    Schnittstellen zwischen der DID-RL und dem Urheberrecht und analysiert die potenziellen Auswirkungen der
+    Richtlinie im Vergleich zum aktuellen Stand. Dabei werden insbesondere End User License Agreements, die
+    Weiterveräußerung digitaler Werkexemplare, das Overblocking rechtmäßig hochgeladener Inhalte sowie die
+    Nutzung urheberrechtlich geschützter Inhalte nach Vertragsbeendigung thematisiert.
 
 - slug: adblocker
   title: "Die rechtliche Zulässigkeit von Adblockern"
   authors: ["Darius Rostam"]
   year: 2017
   type: article
-  areas: [copyright, unfair-competition-law, antitrust]
+  areas: [copyright, unfair-competition-law]
   venue: "InTeR 2017, 146"
   language: de
   openAccess: true
-  url: "https://online.ruw.de/suche/inter/Die-rechtliche-Zulaessigkeit-von-Adblockern-b994ac8002283798c4596f2a44aad441"
+  url: "https://online.ruw.de/dfv-xaver/ruw/start.xav#/text/InTeR_2017_03%2FInTeR_2017_03_b12?_ts=1789888731831"
   pdf: "/papers/adblocker.pdf"
+  thumbnail: "/papers/thumbs/adblocker.jpg"
+  abstract: >-
+    Im Kampf um die Aufmerksamkeit für Internetwerbung greifen immer mehr Internetnutzer zu Werbeblockern,
+    englisch Adblocker. Der digitale Schutzschild wird damit zum Problem von Webseitenbetreibern, die existentiell
+    auf Werbeerlöse angewiesen sind und von Werbenetzwerken, deren Reichweite auf dem Spiel steht. Doch gibt es
+    einen Ausweg: Wer es auf die sog. Whitelist der Anbieter schafft, darf seine Werbung am Adblocker vorbei an
+    die Nutzer ausspielen. Der Aufsatz untersucht die Zulässigkeit dieser Geschäftsmodelle, die inzwischen auch
+    die instanzgerichtliche Rechtsprechung beschäftigt hat.

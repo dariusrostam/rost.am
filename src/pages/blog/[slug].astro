@@ -15,7 +15,6 @@ const {
   description,
   date,
   updated,
-  tags,
   language,
   venue,
   venueUrl,
@@ -23,6 +22,7 @@ const {
   canonical,
   link,
   linkSource,
+  thumbnail,
   demo,
 } = post.data;
 ---
@@ -33,7 +33,6 @@ const {
   slug={post.id}
   date={date}
   updated={updated}
-  tags={tags}
   language={language}
   venue={venue}
   venueUrl={venueUrl}
@@ -41,6 +40,7 @@ const {
   canonical={canonical}
   link={link}
   linkSource={linkSource}
+  thumbnail={thumbnail}
   demo={demo}
 >
   <Content components={{ Aside }} />

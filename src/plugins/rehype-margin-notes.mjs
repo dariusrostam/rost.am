@@ -1,19 +1,8 @@
 import { visitParents } from 'unist-util-visit-parents';
 
-/**
- * Moves GFM footnotes (`[^1]` ... `[^1]: text`) out of the trailing
- * `<section data-footnotes>` block that remark-rehype produces and re-inserts
- * each one as a single `<aside class="margin-note">`, placed as the next
- * sibling right after the top-level block that contains its reference.
- *
- * This is the one canonical DOM location for a note's content — CSS and
- * `margin-notes.js` handle presentation (margin column on wide screens,
- * collapsed-inline toggle on narrow ones); nothing here duplicates content,
- * so no-JS, print, and screen readers all use the same node.
- */
 export default function rehypeMarginNotes() {
   return (tree) => {
-    const footnoteContent = new Map(); // fnId -> hast children (backref stripped)
+    const footnoteContent = new Map();
     let footnotesSectionIndex = -1;
 
     tree.children.forEach((node, i) => {
@@ -34,9 +23,7 @@ export default function rehypeMarginNotes() {
     if (footnotesSectionIndex === -1 || footnoteContent.size === 0) return;
     tree.children.splice(footnotesSectionIndex, 1);
 
-    // For each reference, find the top-level block (direct child of the
-    // document root) that contains it, and queue a note to insert after it.
-    const insertAfter = new Map(); // root-level block node -> [{ refId, fnId, number }]
+    const insertAfter = new Map();
 
     visitParents(
       tree,
@@ -63,9 +50,6 @@ export default function rehypeMarginNotes() {
       for (const { refId, fnId, number, refNode } of notes) {
         const noteNumber = fnId.match(/-(\d+)$/)?.[1];
         const asideId = `mn-${noteNumber ?? refId}`;
-        // Point the reference at the relocated note (the old footnote-list
-        // target no longer exists) so a no-JS click still lands somewhere
-        // useful, and drop the now-meaningless aria-describedby.
         refNode.properties.href = `#${asideId}`;
         delete refNode.properties.ariaDescribedBy;
         newChildren.push({
@@ -112,7 +96,6 @@ function stripBackrefs(nodes) {
     }
     clean.push(node);
   }
-  // Trailing whitespace-only text node left where the backref used to sit
   while (clean.length && clean[clean.length - 1].type === 'text' && /^\s+$/.test(clean[clean.length - 1].value)) {
     clean.pop();
   }

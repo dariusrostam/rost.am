@@ -1,8 +1,6 @@
 @media print {
   .site-header,
   .site-footer,
-  .newsletter,
-  .theme-toggle,
   .skip-link,
   [data-no-print] {
     display: none !important;
@@ -28,10 +26,6 @@
     max-width: none;
   }
 
-  /* Force notes back to plain inline flow regardless of the screen session's
-     .js positioning/collapse state -- print has no viewport to position
-     against, and the result should read as ordinary bottom-of-page-style
-     footnotes rather than absolutely-positioned margin content. */
   .article-body {
     display: block !important;
     max-width: none !important;

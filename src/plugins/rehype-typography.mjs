@@ -7,21 +7,6 @@ const QUOTES = {
 
 const APOSTROPHE = '’';
 
-/**
- * Language-aware typography for mixed German/English prose (brief: "Real
- * typography" under Design direction). Reads the post's `language`
- * frontmatter (set by Astro on `file.data.astro.frontmatter`) rather than
- * guessing per element, since each post is single-language end to end.
- *
- * - `--`/`---` -> en/em dash
- * - straight quotes -> „…" for German, "…" for English, tracked per
- *   top-level block so nesting stays balanced within a paragraph
- * - word-internal `'` -> a typographic apostrophe, not a quote mark
- * - for German content: non-breaking space after `§`/`§§`, `Rn.`, `S.`
- *   before a following number
- *
- * Skips `<code>`/`<pre>` so literal text is never rewritten.
- */
 export default function rehypeTypography() {
   return (tree, file) => {
     const lang = file?.data?.astro?.frontmatter?.language === 'de' ? 'de' : 'en';
@@ -42,9 +27,7 @@ export default function rehypeTypography() {
 }
 
 function transformText(value, state, marks, lang) {
-  let out = value
-    .replace(/---/g, '—') // em dash
-    .replace(/--/g, '–'); // en dash
+  let out = value.replace(/---/g, '—').replace(/--/g, '–');
 
   out = out.replace(/([A-Za-zÀ-ÖØ-öø-ÿ])'([A-Za-zÀ-ÖØ-öø-ÿ])/g, `$1${APOSTROPHE}$2`);
 

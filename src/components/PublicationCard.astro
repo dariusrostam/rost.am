@@ -1,5 +1,6 @@
 ---
-import { TYPE_LABEL, type Publication } from '../lib/citations';
+import { TYPE_LABEL, coAuthorLine, venueWithYear, primaryLink, type Publication } from '../lib/citations';
+import { chipStyle } from '../lib/chipColors';
 
 interface Props {
   pub: Publication & { slug: string };
@@ -7,49 +8,31 @@ interface Props {
 
 const { pub } = Astro.props;
 
-const authorLine = pub.authors.join(', ') + (pub.editorRole ? ' (Hrsg.)' : '');
+const coauthors = coAuthorLine(pub);
 const search = [pub.title, pub.venue, ...pub.authors].join(' ').toLowerCase();
-// The site has two entries titled "Handlungslasten des Urhebers" (monograph
-// + ZGE article) -- disambiguated at a glance by the type badge + venue line
-// that always render alongside the title.
+const sourceHref = primaryLink(pub);
 ---
 
 <li
-  class="entry-card"
+  class="pub-row"
   data-filterable
   data-facet-area={pub.areas.join(' ')}
   data-facet-type={pub.type}
   data-search={search}
 >
-  <a href={`/research/${pub.slug}/`} class="entry-card__image-link" tabindex="-1" aria-hidden="true">
-    <img
-      class="entry-card__image"
-      src={`/og/research/${pub.slug}.png`}
-      width="1200"
-      height="630"
-      loading="lazy"
-      decoding="async"
-      alt=""
-    />
-  </a>
-  <div class="entry-card__body">
-    <p class="meta">
-      <span class="badge badge--accent">{TYPE_LABEL[pub.type]}</span>
-      <span class="badge" style="margin-left: 0.3em;">{pub.language === 'de' ? 'DE' : 'EN'}</span>
-      {pub.openAccess && <span class="badge" style="margin-left: 0.3em;">Open access</span>}
-    </p>
-    <h3 style="margin-top: var(--space-1); font-size: var(--text-lg);">
-      <a href={`/research/${pub.slug}/`}>{pub.title}</a>
-    </h3>
-    <p class="meta">{authorLine} · {pub.venue}</p>
-    <p class="meta">
-      {pub.pdf && <a href={pub.pdf}>PDF</a>}
-      {pub.pdf && (pub.doi || pub.ssrn || pub.url) && ' · '}
-      {pub.doi && <a href={`https://doi.org/${pub.doi}`}>DOI</a>}
-      {pub.doi && (pub.ssrn || pub.url) && ' · '}
-      {pub.ssrn && <a href={pub.ssrn}>SSRN</a>}
-      {pub.ssrn && pub.url && ' · '}
-      {pub.url && <a href={pub.url}>Publisher</a>}
-    </p>
-  </div>
+  <span class="pub-row__badge">
+    <span class="badge badge--colored pub-row__type" style={chipStyle(pub.type)}>{TYPE_LABEL[pub.type]}</span>
+  </span>
+  <h3 class="pub-row__title">
+    <a href={`/research/${pub.slug}/`}>{pub.title}</a>
+  </h3>
+  <span class="pub-row__venue">
+    {pub.openAccess && <img class="oa-icon" src="/images/open-access.svg" width="10" height="16" alt="Open access" />}
+    {sourceHref ? (
+      <a href={sourceHref} target="_blank" rel="noopener noreferrer">{venueWithYear(pub)}</a>
+    ) : (
+      venueWithYear(pub)
+    )}
+    {coauthors && ` · ${coauthors}`}
+  </span>
 </li>

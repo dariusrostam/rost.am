@@ -1,36 +1,37 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Masthead from '../components/Masthead.astro';
 ---
 
 <BaseLayout title="About" description="Dr. Darius Rostam, LL.M. (NYU) — postdoc at the University of Bonn and Executive Director of the Bucerius IP Center.">
-  <div class="page" style="padding-block: var(--space-6) var(--space-8);">
+  <div class="page" data-accent="red" style="padding-block: var(--space-7) var(--space-8);">
+    <Masthead
+      name="Darius Rostam"
+      role="Postdoc, University of Bonn · Executive Director, Bucerius IP Center"
+      photo="/images/darius-rostam.jpg"
+    />
+    <hr class="accent-rule" style="margin-top: var(--space-6);" />
+
     <div class="prose-width">
-      <h1>About</h1>
-
       <p>
-        Dr. Darius Rostam, LL.M. (NYU), is a postdoc at the University of Bonn, at the chair of Prof. Dr. Benjamin
-        Raue, and Executive Director of the Center for Transnational IP, Media and Technology Law and Policy (the
-        Bucerius IP Center) at Bucerius Law School, Hamburg.
-      </p>
-      <p>
-        His research is in private law and law and technology, with a particular focus on copyright and AI. He
-        publishes in both German and English.
-      </p>
+  <strong>Darius Rostam</strong> is a postdoctoral researcher at the University of Bonn under Prof. Dr. Benjamin Raue and serves as Executive Director of the Center for Transnational Intellectual Property, Media and Technology Law and Policy at Bucerius Law School. His current research centers on private law and law and technology, with a particular focus on copyright and AI.
+</p>
 
-      <p class="meta" style="margin-top: var(--space-6);">
-        <strong>LOREM:</strong> the brief didn't include a full CV — the paragraphs above use only the facts it gave
-        (name, title, affiliations, research focus). Everything below is placeholder structure for you to fill in
-        with the real timeline once you drop your CV/bio into <code>content-import/</code>.
-      </p>
+<p>
+  He holds a law degree from Bucerius Law School, a PhD in law from the University of Trier, and a Master of Laws (LL.M.) from New York University, the latter completed as an ERP scholar of the German Academic Scholarship Foundation (Studienstiftung des deutschen Volkes).
+</p>
 
-      <h2>Education</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit — degree, institution, year.</p>
+<p>
+  He passed the First State Examination in Law (Erste Juristische Prüfung) in Hamburg, and later, following his legal clerkship (Rechtsreferendariat) at the Hanseatic Higher Regional Court in Hamburg, the Second State Exam in Law (Zweite Staatsprüfung für Juristen).
+</p>
 
-      <h2>Positions</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit — role, institution, years.</p>
+<p>
+  His dissertation, <em>"Handlungslasten des Urhebers – Prozeduralisierung des Urheberrechts,"</em> was funded by the German Academic Scholarship Foundation and received both the GRUR Dissertation Prize 2025 and the 2025 Förderpreis of the Freundeskreis Trierer Universität e.V. for early-career researchers.
+</p>
 
-      <h2>Selected recognition</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+<p>
+  He worked as a research assistant at the junior professorship for civil law, intellectual property, and law and digitalization under Prof. Dr. Linda Kuschel, LL.M. (Harvard), and completed clerkship stages at the German Federal Ministry of Justice, Freshfields, and Google. He subsequently worked as an associate in the copyright and media law practice at CMS Hasche Sigle in Hamburg.
+</p>
     </div>
   </div>
 </BaseLayout>

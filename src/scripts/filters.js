@@ -1,15 +1,10 @@
-// Drives FilterBar.astro against a `[data-filter-list]` of `[data-filterable]`
-// items. AND across facets, OR within a facet (brief §1): an item must match
-// at least one selected value in EVERY facet that has a selection. Filter
-// state round-trips through the URL query string so filtered views are
-// linkable and the back button works.
 (function () {
   const bar = document.querySelector('[data-filter-bar]');
   const list = document.querySelector('[data-filter-list]');
   if (!bar || !list) return;
 
   const items = Array.from(list.querySelectorAll('[data-filterable]'));
-  const chips = Array.from(bar.querySelectorAll('.chip'));
+  const chips = Array.from(document.querySelectorAll('.chip[data-facet]'));
   const searchInput = bar.querySelector('[data-filter-search]');
   const clearBtn = bar.querySelector('[data-filter-clear]');
   const status = bar.querySelector('[data-filter-status]') || document.querySelector('[data-filter-status]');
@@ -103,7 +98,12 @@
   chips.forEach((chip) => {
     chip.addEventListener('click', () => {
       const pressed = chip.getAttribute('aria-pressed') === 'true';
-      chip.setAttribute('aria-pressed', String(!pressed));
+      chips.filter((c) => c.dataset.facet === chip.dataset.facet).forEach((c) => c.setAttribute('aria-pressed', 'false'));
+      if (!pressed) {
+        chips
+          .filter((c) => c.dataset.facet === chip.dataset.facet && c.dataset.value === chip.dataset.value)
+          .forEach((c) => c.setAttribute('aria-pressed', 'true'));
+      }
       applyFilters(true);
     });
   });

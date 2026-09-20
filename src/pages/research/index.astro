@@ -8,13 +8,7 @@ import { AREA_LABELS, AREA_ORDER } from '../../lib/taxonomy';
 
 const pubs = (await getCollection('publications')).sort((a, b) => b.data.year - a.data.year);
 
-const byYear = new Map<number, typeof pubs>();
-for (const pub of pubs) {
-  const list = byYear.get(pub.data.year) ?? [];
-  list.push(pub);
-  byYear.set(pub.data.year, list);
-}
-const years = Array.from(byYear.keys()).sort((a, b) => b - a);
+const QUICK_AREAS = ['copyright', 'ai', 'it-security-law', 'law-and-society'] as const;
 
 const areaFacet = {
   key: 'area',
@@ -39,26 +33,36 @@ const typeFacet = {
 ---
 
 <BaseLayout title="Research" description="Publications on copyright, AI and law and technology — monographs, articles, chapters and working papers.">
-  <div class="page" style="padding-block: var(--space-6) var(--space-8);">
+  <div class="page" data-accent="violet" style="padding-block: var(--space-6) var(--space-8);">
     <h1>Research</h1>
+    <hr class="accent-rule" />
 
-    <div class="research-layout">
-      <div data-filter-list class="research-entries">
+    <div class="research-filter-box">
+      <div class="research-quick-filters" role="group" aria-label="Quick filter by area">
         {
-          years.map((year) => (
-            <div data-filter-group>
-              <h2 class="year-heading">{year}</h2>
-              <ul class="card-list card-list--divided">
-                {byYear.get(year)!.map((pub) => <PublicationCard pub={{ ...pub.data, slug: pub.id }} />)}
-              </ul>
-            </div>
+          QUICK_AREAS.map((value) => (
+            <button type="button" class="chip" data-facet="area" data-value={value} aria-pressed="false">
+              {AREA_LABELS[value]}
+            </button>
           ))
         }
+        <button type="button" class="chip" data-more-toggle aria-expanded="false" aria-controls="research-more-panel">
+          More
+        </button>
       </div>
-
-      <aside class="research-filters">
+      <div class="research-more-panel" data-more-panel id="research-more-panel" hidden>
         <FilterBar facets={[areaFacet, typeFacet]} searchPlaceholder="Search title, venue, co-authors" />
-      </aside>
+      </div>
+    </div>
+
+    <div data-filter-list class="research-entries">
+      <ul class="card-list card-list--divided">
+        {pubs.map((pub) => <PublicationCard pub={{ ...pub.data, slug: pub.id }} />)}
+      </ul>
     </div>
   </div>
+
+  <script>
+    import '../../scripts/research-more.js';
+  </script>
 </BaseLayout>

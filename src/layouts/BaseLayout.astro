@@ -7,9 +7,6 @@ import tokensCss from '../styles/tokens.css?raw';
 import baseCss from '../styles/base.css?raw';
 import layoutCss from '../styles/layout.css?raw';
 import printCss from '../styles/print.css?raw';
-// Not ?raw: a real cacheable linked stylesheet (astro.config sets
-// build.inlineStylesheets: 'never') rather than inline text repeated on
-// every page -- components.css is too large to count as "critical".
 import '../styles/components.css';
 
 interface Props {
@@ -50,13 +47,10 @@ const jsonLdList = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
     <link rel="canonical" href={canonicalURL} />
     {noindex && <meta name="robots" content="noindex" />}
 
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="alternate" type="application/rss+xml" title={SITE.title} href="/rss.xml" />
 
-    <!-- Preload the one above-the-fold face -->
     <link rel="preload" href="/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
 
-    <!-- Open Graph / Twitter -->
     <meta property="og:type" content={type} />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
@@ -74,7 +68,6 @@ const jsonLdList = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
       ))
     }
 
-    <!-- Prerender same-origin links on hover/viewport -- no JS, native browser support only -->
     <script
       is:inline
       type="speculationrules"
@@ -88,21 +81,8 @@ const jsonLdList = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
     <style set:html={layoutCss}></style>
     <style media="print" set:html={printCss}></style>
 
-    <!--
-      Blocking, tiny: applies the stored theme and marks JS as available
-      before first paint, so neither the theme nor the margin-note layout
-      (which depends on an html.js selector) ever visibly changes after load.
-    -->
     <script is:inline>
-      (function () {
-        document.documentElement.classList.add('js');
-        try {
-          var stored = localStorage.getItem('theme');
-          if (stored === 'light' || stored === 'dark') {
-            document.documentElement.setAttribute('data-theme', stored);
-          }
-        } catch (e) {}
-      })();
+      document.documentElement.classList.add('js');
     </script>
     <slot name="head" />
   </head>

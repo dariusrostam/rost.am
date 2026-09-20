@@ -14,11 +14,6 @@ export const SOCIALS = {
   // TODO(Darius): add if you want it surfaced — not in the brief's socials list,
   // so left out of JSON-LD `sameAs` rather than guessed.
   orcid: '',
-  email: '', // TODO(Darius): public contact address for the footer / Impressum
+  email: '', // TODO(Darius): public contact address for the footer
   rss: '/rss.xml',
 } as const;
-
-// TODO(Darius): set your real Buttondown username, then switch this on.
-// Double opt-in must be enabled in the Buttondown dashboard settings — German
-// law (§ 7 Abs. 2 Nr. 3 UWG) requires confirmed opt-in for newsletter signup.
-export const BUTTONDOWN_USERNAME = 'TODO-buttondown-username';

@@ -1,0 +1,134 @@
+---
+import { render } from 'astro:content';
+import { youtubeThumbnail } from '../lib/youtube';
+import { fetchLinkPreviewImage } from '../lib/linkPreview';
+import type { StreamEntry } from '../lib/stream';
+
+interface Props {
+  item: StreamEntry;
+  pinned?: boolean;
+  allRank?: number;
+}
+
+const { item, pinned = false, allRank } = Astro.props;
+
+const TYPE_LABEL: Record<StreamEntry['type'], string> = {
+  note: 'Note',
+  link: 'Link',
+  youtube: 'Video',
+  bluesky: 'Bluesky',
+  blogpost: 'Blog',
+  publication: 'Research',
+};
+
+const dateFormatter = new Intl.DateTimeFormat('en-GB', { year: 'numeric', month: 'short', day: 'numeric' });
+
+let Content: Awaited<ReturnType<typeof render>>['Content'] | undefined;
+let title: string | undefined;
+let href: string | undefined;
+let external = false;
+let source: string | undefined;
+let thumb: string | undefined;
+let dateLabel: string;
+let showDate = true;
+
+if (item.type === 'blogpost') {
+  title = item.post.data.title;
+  href = `/blog/${item.post.id}/`;
+  source = item.post.data.venue;
+  dateLabel = dateFormatter.format(item.date);
+} else if (item.type === 'publication') {
+  title = item.pub.data.title;
+  href = `/research/${item.pub.id}/`;
+  source = item.pub.data.venue;
+  dateLabel = String(item.pub.data.year);
+  showDate = !/\d{4}/.test(item.pub.data.venue);
+} else if (item.type === 'bluesky') {
+  href = item.url;
+  external = true;
+  dateLabel = dateFormatter.format(item.date);
+} else {
+  const rendered = await render(item.entry);
+  Content = rendered.Content;
+  title = item.entry.data.title;
+  href = item.entry.data.url;
+  external = Boolean(href);
+  source = item.entry.data.source;
+  if (item.type === 'youtube' && href) thumb = youtubeThumbnail(href);
+  if (item.type === 'link' && href) thumb = await fetchLinkPreviewImage(href);
+  dateLabel = dateFormatter.format(item.date);
+}
+
+const linkHost = external && href && item.type !== 'bluesky' ? new URL(href).hostname.replace(/^www\./, '') : undefined;
+---
+
+<li class="feed-card" class:list={{ 'feed-card--pinned': pinned }} data-type={item.type} data-all-rank={allRank}>
+  <p class="feed-meta">
+    <span class="feed-chip">{TYPE_LABEL[item.type]}</span>
+    {
+      pinned && (
+        <span class="feed-pinned-marker">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 17v5" />
+            <path d="M9 10.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V6a1 1 0 0 1 1-1 2 2 0 0 0 0-4H8a2 2 0 0 0 0 4 1 1 0 0 1 1 1z" />
+          </svg>
+          Pinned
+        </span>
+      )
+    }
+    {showDate && <time datetime={item.date.toISOString()}>{dateLabel}</time>}
+    {(source || linkHost) && <span class="feed-source">{source ?? linkHost}</span>}
+  </p>
+  {
+    item.type === 'bluesky' ? (
+      <div class="feed-thumb-row">
+        <div class="feed-thumb-row__text">
+          <p class="feed-body">{item.text}</p>
+          <p class="feed-bluesky-link">
+            <a href={href} target="_blank" rel="noopener noreferrer">
+              View on Bluesky ↗
+            </a>
+          </p>
+        </div>
+        {item.thumb && (
+          <a href={href} class="feed-thumb-link" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true">
+            <img class="feed-thumb" src={item.thumb} width="176" height="99" loading="lazy" decoding="async" alt="" />
+          </a>
+        )}
+      </div>
+    ) : item.type === 'note' ? (
+      <>
+        <h3 class="feed-title">{title}</h3>
+        {Content && (
+          <div class="feed-body">
+            <Content />
+          </div>
+        )}
+      </>
+    ) : item.type === 'youtube' || item.type === 'link' ? (
+      <div class="feed-thumb-row">
+        <div class="feed-thumb-row__text">
+          <h3 class="feed-title">
+            <a href={href} target="_blank" rel="noopener noreferrer">
+              {title} <span class="feed-arrow" aria-hidden="true">↗</span>
+            </a>
+          </h3>
+          {Content && (
+            <div class="feed-body">
+              <Content />
+            </div>
+          )}
+        </div>
+        {thumb && (
+          <a href={href} class="feed-thumb-link" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true">
+            <img class="feed-thumb" src={thumb} width="176" height="99" loading="lazy" decoding="async" alt="" />
+          </a>
+        )}
+      </div>
+    ) : (
+      <h3 class="feed-title feed-title--lg">
+        <a href={href}>{title}</a>
+      </h3>
+    )
+  }
+</li>

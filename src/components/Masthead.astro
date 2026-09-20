@@ -1,0 +1,17 @@
+---
+interface Props {
+  name: string;
+  role: string;
+  photo: string;
+}
+
+const { name, role, photo } = Astro.props;
+---
+
+<div class="masthead">
+  <img class="masthead__photo" src={photo} width="320" height="320" loading="eager" decoding="async" alt={name} />
+  <div>
+    <h1 class="masthead__name">{name}</h1>
+    <p class="masthead__role">{role}</p>
+  </div>
+</div>

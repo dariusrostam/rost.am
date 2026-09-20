@@ -1,17 +1,5 @@
 ---
-// The only playful thing on the site (brief: "the whole joke and it should
-// be the only one") -- a CJEU judgment styled 404 page. Deliberately does
-// NOT use BaseLayout: no header/footer/theme-toggle chrome, no scripts at
-// all (brief: "zero JavaScript"), and no dark mode -- a real judgment
-// doesn't have one, and committing to that is part of playing it straight.
-// GitHub Pages serves this file automatically (as dist/404.html) with an
-// actual 404 status for any unmatched path; see README for the deploy note.
-
-import judgmentCss from '../styles/judgment.css?raw';
-
-const today = new Date();
-const dateFormatter = new Intl.DateTimeFormat('en-GB', { year: 'numeric', month: 'long', day: 'numeric' });
-const longDate = dateFormatter.format(today); // e.g. "23 August 2026"
+import notFoundCss from '../styles/not-found.css?raw';
 ---
 
 <!doctype html>
@@ -21,93 +9,26 @@ const longDate = dateFormatter.format(today); // e.g. "23 August 2026"
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Page not found — Darius Rostam</title>
     <meta name="robots" content="noindex" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <style set:html={judgmentCss}></style>
+    <style set:html={notFoundCss}></style>
   </head>
   <body>
     <main>
-      <h1>Judgment of the Court (Grand Chamber)</h1>
-      <p class="date-line">{longDate}</p>
-
-      <p class="keywords">
-        (Reference for a preliminary ruling — Hypertext Transfer Protocol — Status code 404 — Resource not found —
-        Whether a uniform resource locator confers a right of access — Legitimate expectations)
-      </p>
-
-      <p class="case-number">In Case C‑404/26,</p>
-
-      <p class="reference-formula">
-        REQUEST for a preliminary ruling under Article 267 TFEU from the browser of the applicant, made by decision
-        of 12 August 2026, received at the Court on 15 August 2026, in the proceedings
-      </p>
-
-      <p class="parties">
-        <strong>Darius Rostam</strong>
-        <span class="v">v</span>
-        <strong>The Requested URL</strong>
-      </p>
-
-      <div class="bench">
-        <p>
-          THE COURT (Grand Chamber), composed of M. Halvorsen, President, A. Kowalczyk, T. Okonkwo, S. Bergström,
-          R. Delacroix, L. Marchetti and N. Vasilenko, Judges, Advocate General: P. Anholt, Registrar: C. Fennimore,
-        </p>
-        <div class="recitals">
-          <p>having regard to the written procedure,</p>
-          <p>after hearing the Opinion of the Advocate General at the sitting on 20 August 2026,</p>
-          <p>gives the following</p>
+      <div class="card-wrap">
+        <img class="luna" src="/images/luna-404.png" width="345" height="420" alt="Luna, a golden retriever puppy, peering over the top of this card" />
+        <div class="card">
+          <h1>404</h1>
+          <p class="line">Luna couldn't find this page either.</p>
+          <p class="links">
+            <a href="/">Home</a>
+            <span>·</span>
+            <a href="/research">Research</a>
+            <span>·</span>
+            <a href="/blog">Blog</a>
+            <span>·</span>
+            <a href="/about">About</a>
+          </p>
         </div>
-        <p class="judgment-intro"><em>Judgment</em></p>
       </div>
-
-      <h2>Legal context</h2>
-      <ol class="paragraphs" start="1" role="list">
-        <li><span class="n">1</span><span class="body">Article 267 TFEU empowers the Court to give preliminary rulings concerning the interpretation of Union law where such a question is raised before a court or tribunal of a Member State and that court or tribunal considers a decision thereon necessary to enable it to give judgment. For the purposes of these proceedings, and without prejudice to the question whether a browser constitutes a court or tribunal within the meaning of that provision, the Court proceeds on the basis that the reference is admissible.</span></li>
-        <li><span class="n">2</span><span class="body">The Hypertext Transfer Protocol, as codified in the applicable technical standard, provides that a server which is unable to associate a requested target resource with any current representation is to return the status code '404 (Not Found)', and that that status code does not indicate whether the lack of representation is temporary or permanent.</span></li>
-        <li><span class="n">3</span><span class="body">It is settled case-law that the protection of legitimate expectations forms part of the general principles of European Union law, and that the right to rely on that principle extends to any person in a situation in which it is apparent that an assurance, precise, unconditional and consistent, has given rise to well-founded expectations.</span></li>
-      </ol>
-
-      <h2>The dispute in the main proceedings and the question referred for a preliminary ruling</h2>
-      <ol class="paragraphs" start="4" role="list">
-        <li><span class="n">4</span><span class="body">The applicant, navigating in reliance on a hyperlink, directed his browser to a uniform resource locator situated within the domain operated by the respondent.</span></li>
-        <li><span class="n">5</span><span class="body">The server associated with that domain returned the status code '404'. No representation of any resource was transmitted to the applicant.</span></li>
-        <li><span class="n">6</span><span class="body">The applicant submits that, the hyperlink having been encountered in circumstances giving every appearance of reliability, he formed a legitimate expectation that a resource would be found at that address, and that the absence of any resource is accordingly unlawful.</span></li>
-        <li><span class="n">7</span><span class="body">In those circumstances, the browser decided to stay the proceedings and to refer the following question to the Court for a preliminary ruling: does a uniform resource locator, by its existence alone, confer on an internet user a right of access to a specific resource, and, if the expectation of such access is disappointed, what remedy does European Union law require?</span></li>
-      </ol>
-
-      <h2>Consideration of the question referred</h2>
-      <ol class="paragraphs" start="8" role="list">
-        <li><span class="n">8</span><span class="body">As a preliminary matter, it must be established whether the requested resource in fact exists. It is common ground that the request made by the applicant was met with the status code '404', and no evidence has been adduced to suggest that that response was erroneous. The Court accordingly finds that the requested resource does not exist at the address in question.</span></li>
-        <li><span class="n">9</span><span class="body">As to whether a uniform resource locator confers a right of access, the Court observes that such a locator is, by its nature, no more than an address: it identifies where a request may be directed, but it does not, in itself, guarantee the existence, permanence or accessibility of any particular resource at that address. To hold otherwise would be to convert the ordinary syntax of a network protocol into a source of substantive entitlement, a proposition for which no basis exists in European Union law.</span></li>
-        <li><span class="n">10</span><span class="body">That said, the Court does not accept the respondent's submission that the applicant's expectation was, for that reason alone, unreasonable. Where a hyperlink is encountered in circumstances that would lead a reasonably attentive user to anticipate a functioning destination, the resulting expectation is capable of being legitimate, irrespective of whether the locator itself carried any formal guarantee.</span></li>
-        <li><span class="n">11</span><span class="body">It does not follow, however, that a legitimate expectation which is disappointed must be remedied by an order compelling the respondent to bring a non-existent resource into existence, still less by an award of damages. The appropriate and proportionate remedy, consistent with the principle of effectiveness, is navigation: the applicant should be directed to resources that do, in fact, exist.</span></li>
-        <li><span class="n">12</span><span class="body">In the light of the foregoing, the answer to the question referred is that a uniform resource locator does not, by itself, confer a right of access to any specific resource, but that an internet user's legitimate expectation, where disappointed, is to be satisfied by navigation to the applicant's existing resources rather than by any other remedy.</span></li>
-      </ol>
-
-      <h2>Costs</h2>
-      <ol class="paragraphs" start="13" role="list">
-        <li><span class="n">13</span><span class="body">Since these proceedings are, for the parties to the main proceedings, a step in the action pending before the browser, the decision on costs is a matter for that browser. Costs incurred in submitting observations to the Court, other than the costs of those parties, are not recoverable.</span></li>
-      </ol>
-
-      <p class="operative-intro">On those grounds, the Court (Grand Chamber) hereby rules:</p>
-      <ol class="ruling judgment-citations" role="list">
-        <li>
-          A uniform resource locator does not, by itself, confer upon an internet user any enforceable right of
-          access to a specific resource; the fact that a request addressed to that locator returns the status code
-          '404 Not Found' is sufficient to establish, in the absence of evidence to the contrary, that the
-          requested resource does not exist at that address.
-        </li>
-        <li>
-          Where an internet user's expectation, legitimately formed in reliance on a hyperlink, is disappointed by
-          the non-existence of the requested resource, the appropriate remedy is navigation to the applicant's
-          existing resources — in particular the home page (<a href="/">rost.am</a>) and, where the user's
-          purpose concerns the applicant's published work, the research repository (<a href="/research">rost.am/research</a>) — rather than any form of compensation.
-        </li>
-      </ol>
-
-      <p class="signatures">[Signatures]</p>
-
-      <p class="language-note">*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Language of the case: German.</p>
     </main>
   </body>
 </html>

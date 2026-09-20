@@ -1,8 +1,7 @@
 :root {
-  /* Type -- modern sans-serif throughout (the 404 judgment page keeps its
-     own serif deliberately; everything else uses this). */
   --font-sans: 'Inter Variable', 'Inter', ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-sans);
+  --font-mono: ui-monospace, 'SF Mono', 'Menlo', 'Consolas', 'Liberation Mono', monospace;
 
   --measure: 68ch;
   --measure-narrow: 52ch;
@@ -18,7 +17,6 @@
   --leading-normal: 1.55;
   --leading-relaxed: 1.7;
 
-  /* Space (8px-ish rhythm, tuned to the type scale) */
   --space-1: 0.25rem;
   --space-2: 0.5rem;
   --space-3: 0.75rem;
@@ -28,7 +26,6 @@
   --space-7: 3rem;
   --space-8: 4.5rem;
 
-  /* Layout */
   --content-width: 42rem;
   --margin-col-width: 15rem;
   --margin-gap: 2.5rem;
@@ -36,16 +33,20 @@
   --page-padding: var(--space-4);
   --margin-breakpoint: 1100px;
 
-  /* Motion */
   --duration-fast: 120ms;
   --duration-normal: 200ms;
   --ease: cubic-bezier(0.2, 0, 0, 1);
 
-  /* Radii */
   --radius: 4px;
   --radius-lg: 8px;
 
-  /* Light theme (default) -- stark white/black, modern */
+  --color-navy: #004777;
+  --color-red: #a30000;
+  --color-orange: #ff7700;
+  --color-sand: #efd28d;
+  --color-teal: #00afb5;
+
+  --color-page-bg: #f4f6f8;
   --color-bg: #ffffff;
   --color-bg-raised: #f5f5f5;
   --color-text: #0a0a0a;
@@ -53,18 +54,26 @@
   --color-text-faint: #767676;
   --color-border: #e5e5e5;
   --color-border-strong: #cccccc;
-  --color-accent: #1d4ed8;
-  --color-accent-strong: #1739a3;
+  --color-accent: #004777;
+  --color-accent-strong: #a30000;
   --color-accent-contrast: #ffffff;
-  --color-focus-ring: #a35a19;
+  --color-focus-ring: #ff7700;
   --color-chip-bg: #f5f5f5;
-  --color-chip-bg-active: #1d4ed8;
+  --color-chip-bg-active: #004777;
   --color-chip-text-active: #ffffff;
   --color-code-bg: #f5f5f5;
+
+  --feed-blue: #1185fe;
+  --feed-blue-ink: #0b6bcb;
+  --feed-red: #c1121f;
+  --feed-teal: #0b7a6e;
+  --feed-violet: #5b45b0;
+  --feed-pinned-ink: #8c0d17;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) {
+  :root {
+    --color-page-bg: #0a0a0a;
     --color-bg: #0a0a0a;
     --color-bg-raised: #161616;
     --color-text: #f5f5f5;
@@ -72,31 +81,16 @@
     --color-text-faint: #8a8a8a;
     --color-border: #2a2a2a;
     --color-border-strong: #3d3d3d;
-    --color-accent: #7aa2f7;
-    --color-accent-strong: #a8c1fa;
-    --color-accent-contrast: #0a1330;
-    --color-focus-ring: #e2a15c;
+    --color-accent: #00afb5;
+    --color-accent-strong: #ff7700;
+    --color-accent-contrast: #04262b;
+    --color-focus-ring: #efd28d;
     --color-chip-bg: #161616;
-    --color-chip-bg-active: #7aa2f7;
-    --color-chip-text-active: #0a1330;
+    --color-chip-bg-active: #00afb5;
+    --color-chip-text-active: #04262b;
     --color-code-bg: #161616;
-  }
-}
 
-:root[data-theme='dark'] {
-  --color-bg: #0a0a0a;
-  --color-bg-raised: #161616;
-  --color-text: #f5f5f5;
-  --color-text-muted: #a3a3a3;
-  --color-text-faint: #8a8a8a;
-  --color-border: #2a2a2a;
-  --color-border-strong: #3d3d3d;
-  --color-accent: #7aa2f7;
-  --color-accent-strong: #a8c1fa;
-  --color-accent-contrast: #0a1330;
-  --color-focus-ring: #e2a15c;
-  --color-chip-bg: #161616;
-  --color-chip-bg-active: #7aa2f7;
-  --color-chip-text-active: #0a1330;
-  --color-code-bg: #161616;
+    --feed-blue-ink: var(--feed-blue);
+    --feed-pinned-ink: #ff8a80;
+  }
 }

@@ -2,7 +2,6 @@
 import BaseLayout from './BaseLayout.astro';
 import { SITE } from '../config';
 import '../styles/margin-notes.css';
-import NewsletterForm from '../components/NewsletterForm.astro';
 
 interface Props {
   title: string;
@@ -10,7 +9,6 @@ interface Props {
   slug: string;
   date: Date;
   updated?: Date;
-  tags?: string[];
   language: 'en' | 'de';
   venue?: string;
   venueUrl?: string;
@@ -18,6 +16,7 @@ interface Props {
   canonical?: string;
   link?: string;
   linkSource?: string;
+  thumbnail?: string;
   demo?: boolean;
 }
 
@@ -27,18 +26,15 @@ const {
   slug,
   date,
   updated,
-  tags = [],
   language,
   venue,
   venueUrl,
   crosspostMode,
   canonical,
   link,
-  linkSource,
+  thumbnail,
   demo = false,
 } = Astro.props;
-
-const linkHost = link ? new URL(link).hostname.replace(/^www\./, '') : undefined;
 
 const isCrosspost = Boolean(venue);
 const outwardCanonical = isCrosspost && crosspostMode === 'full' ? canonical : undefined;
@@ -72,7 +68,7 @@ const jsonLd = {
   noindex={demo}
   image={new URL(`/og/blog/${slug}.png`, SITE.url).toString()}
 >
-  <article class="page" style="padding-block: var(--space-6) var(--space-8);">
+  <article class="page" data-accent="teal" style="padding-block: var(--space-6) var(--space-8);">
     <div class="prose-width">
       {demo && (
         <p class="meta" style="margin-bottom: var(--space-4);">
@@ -86,6 +82,16 @@ const jsonLd = {
         </p>
       )}
 
+      <img
+        class="detail-thumb"
+        src={thumbnail ?? '/images/darius-rostam.jpg'}
+        width="595"
+        height="842"
+        loading="eager"
+        decoding="async"
+        alt=""
+      />
+
       <header style="margin-bottom: var(--space-6);">
         <h1>
           {link ? (
@@ -96,17 +102,13 @@ const jsonLd = {
             title
           )}
         </h1>
-        <p class="meta">
+        <p class="meta" style="margin-top: var(--space-2);">
           <time datetime={date.toISOString()}>{dateFormatter.format(date)}</time>
           {updated && (
             <>
               {' · '}updated <time datetime={updated.toISOString()}>{dateFormatter.format(updated)}</time>
             </>
           )}
-          {' · '}
-          <span class="badge">{language === 'de' ? 'DE' : 'EN'}</span>
-          {link && <span class="badge" style="margin-left: 0.3em;">link{linkSource ? ` · via ${linkSource}` : linkHost ? ` · ${linkHost}` : ''}</span>}
-          {tags.map((tag) => <span class="badge" style="margin-left: 0.3em;">{tag}</span>)}
         </p>
       </header>
 
@@ -133,12 +135,6 @@ const jsonLd = {
           import '../scripts/margin-notes.js';
         </script>
       </>
-    )}
-
-    {!demo && (
-      <div class="prose-width" style="margin-top: var(--space-8);">
-        <NewsletterForm />
-      </div>
     )}
   </article>
 </BaseLayout>

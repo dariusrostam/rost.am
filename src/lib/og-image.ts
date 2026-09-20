@@ -3,22 +3,12 @@ import { Resvg } from '@resvg/resvg-js';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
-// Static (non-variable) instances specifically for OG-card generation --
-// satori doesn't support the variable woff2 files the rest of the site
-// uses (it needs ttf/otf/woff), so these two weights are fetched once from
-// Google Fonts' legacy (non-variable) endpoint and committed here rather
-// than reprocessed on every build. Read via an absolute, cwd-based path
-// (astro build always runs from the project root) rather than an
-// import.meta.url or Vite asset import -- both of those resolve to
-// locations that don't survive Astro moving the compiled chunk around
-// during prerendering.
 const regular = readFileSync(join(process.cwd(), 'src/assets/og-fonts/inter-regular.ttf'));
 const bold = readFileSync(join(process.cwd(), 'src/assets/og-fonts/inter-bold.ttf'));
 
 const WIDTH = 1200;
 const HEIGHT = 630;
 
-/** Simple typographic OG card: title + site kicker, no external service. */
 export async function renderOgImage(title: string, kicker = 'rost.am'): Promise<Buffer> {
   const svg = await satori(
     {

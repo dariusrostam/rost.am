@@ -1,20 +1,12 @@
 ---
-import { getCollection, render } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import NewsletterForm from '../components/NewsletterForm.astro';
+import Masthead from '../components/Masthead.astro';
+import StreamCard from '../components/StreamCard.astro';
 import { SITE, SOCIALS } from '../config';
+import { getStreamEntries } from '../lib/stream';
 
-const recentPubs = (await getCollection('publications')).sort((a, b) => b.data.year - a.data.year).slice(0, 3);
-const recentPosts = (await getCollection('blog', ({ data }) => !data.draft && !data.demo))
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0, 3);
-
-const [nowEntry] = await getCollection('now');
-const { Content: NowContent } = await render(nowEntry);
-const STALE_AFTER_DAYS = 45;
-const daysSinceUpdate = Math.floor((Date.now() - nowEntry.data.updated.getTime()) / (1000 * 60 * 60 * 24));
-const isStale = daysSinceUpdate > STALE_AFTER_DAYS;
-const dateFormatter = new Intl.DateTimeFormat('en-GB', { year: 'numeric', month: 'long', day: 'numeric' });
+const { entries: streamEntries, pinnedNote } = await getStreamEntries();
+const ALL_VIEW_LIMIT = 12;
 
 const sameAs = [SOCIALS.linkedin, SOCIALS.ssrn, SOCIALS.bluesky, SOCIALS.orcid].filter(Boolean);
 const jsonLd = {
@@ -33,98 +25,76 @@ const jsonLd = {
 
 <BaseLayout title={SITE.title} jsonLd={jsonLd}>
   <div class="page" style="padding-block: var(--space-7) var(--space-8);">
-    <h1 class="hero-name">Darius Rostam</h1>
-    <p class="hero-tagline">Postdoc, University of Bonn · Executive Director, Bucerius IP Center</p>
+    <Masthead
+      name="Darius Rostam"
+      role="Postdoc, University of Bonn · Executive Director, Bucerius IP Center"
+      photo="/images/darius-rostam.jpg"
+    />
 
     <div class="prose-width" style="margin-top: var(--space-6);">
       <p>
-        Welcome! I am a postdoc at University of Bonn and Executive Director of the Center for Transnational IP,
-        Media and Technology Law and Policy at Bucerius Law School in Hamburg.
+        Welcome! I am a postdoc at University of Bonn and Executive Director of the Center for Transnational IP, Media and
+        Technology Law and Policy at Bucerius Law School in Hamburg.
       </p>
       <p>My research focuses on private law as well as law and technology, especially copyright and AI.</p>
-      <p>You can find my publications and my blog below.</p>
       <p>
-        If you'd like to collaborate, feel free to{' '}
-        {SOCIALS.email ? <a href={`mailto:${SOCIALS.email}`}>email me</a> : 'email me'}. You can find me on:
+        If you like to collaborate, feel free to <a href="https://www.law-school.de/profil/darius-rostam" target="_blank" rel="noopener noreferrer">email</a> me.
       </p>
-
-      <div class="social-icons" style="margin-top: var(--space-4);">
-        <a href={SOCIALS.linkedin} aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        <a href={SOCIALS.ssrn} aria-label="SSRN author page" target="_blank" rel="noopener noreferrer">SSRN</a>
-        <a href={SOCIALS.bluesky} aria-label="Bluesky" target="_blank" rel="me noopener noreferrer">Bluesky</a>
-        <a href="/rss.xml" aria-label="RSS feed">RSS</a>
-      </div>
+      <p class="social-icons" style="margin-top: var(--space-4);">
+        <a href={SOCIALS.linkedin} aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path
+              d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.64h.05c.53-1 1.83-2.06 3.77-2.06 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.5c0-1.31-.02-3-1.83-3-1.83 0-2.11 1.43-2.11 2.9V21h-4V9Z"
+            ></path>
+          </svg>
+        </a>
+        <a href={SOCIALS.ssrn} aria-label="SSRN author page" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <path d="M6 2h9l5 5v15H6V2Z"></path>
+            <path d="M15 2v5h5"></path>
+            <path d="M9 13h6M9 16h6M9 10h3" stroke-linecap="round"></path>
+          </svg>
+        </a>
+        <a href={SOCIALS.bluesky} aria-label="Bluesky" target="_blank" rel="me noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path
+              d="M12 8.6C10.6 5.9 7.9 3.7 5 3c-.6-.1-1.2.4-1 1.1.6 3 .8 8.6 2.2 10.8 1.6 2.5 4.2 2.6 4.9 2.6 0 0-1.5.7-3.3.7-1.6 0-2.5-.4-3-.7 1.2 2 4 3.5 6.2 3.5 2.2 0 5-1.5 6.2-3.5-.5.3-1.4.7-3 .7-1.8 0-3.3-.7-3.3-.7.7 0 3.3-.1 4.9-2.6 1.4-2.2 1.6-7.8 2.2-10.8.2-.7-.4-1.2-1-1.1-2.9.7-5.6 2.9-7 5.6Z"
+            ></path>
+          </svg>
+        </a>
+        <a href={SOCIALS.rss} aria-label="RSS feed">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="5" cy="19" r="1.5" fill="currentColor" stroke="none"></circle>
+            <path d="M4 4a16 16 0 0 1 16 16"></path>
+            <path d="M4 11a9 9 0 0 1 9 9"></path>
+          </svg>
+        </a>
+      </p>
     </div>
 
-    <section style="margin-top: var(--space-8);">
-      <p class="section-label">// now</p>
-      <div class="prose-width">
-        <p class:list={['meta', { 'stale-warning': isStale }]}>
-          Last updated <time datetime={nowEntry.data.updated.toISOString()}>{dateFormatter.format(nowEntry.data.updated)}</time>
-          {isStale && ` — that's ${daysSinceUpdate} days ago.`}
-        </p>
-        <div>
-          <NowContent />
+    <section class="section-box" data-accent="navy" id="feed" style="margin-top: var(--space-7);">
+      <div class="feed-head">
+        <h2 class="feed-heading">Feed</h2>
+        <div class="feed-filter" data-feed-filter role="group" aria-label="Filter feed">
+          <a href="#feed" class="feed-pill" data-filter-value="all" aria-pressed="true">All</a>
+          <a href="/research/" class="feed-pill" data-filter-value="research" aria-pressed="false">Research</a>
+          <a href="/blog/" class="feed-pill" data-filter-value="blog" aria-pressed="false">Blog</a>
         </div>
-        <p><a href="/now">/now →</a></p>
       </div>
+      <ul class="stream-list" data-feed-list style="margin-top: var(--space-4);">
+        {pinnedNote && <StreamCard item={pinnedNote} pinned />}
+        {streamEntries.map((item, index) => <StreamCard item={item} allRank={index < ALL_VIEW_LIMIT ? index : undefined} />)}
+      </ul>
+      <p class="feed-browse" data-feed-browse="research" hidden>
+        <a href="/research/">Browse all research →</a>
+      </p>
+      <p class="feed-browse" data-feed-browse="blog" hidden>
+        <a href="/blog/">Browse all blog posts →</a>
+      </p>
     </section>
-
-    <section style="margin-top: var(--space-8);">
-      <p class="section-label">// research</p>
-      <h2>Recent work</h2>
-      <div class="card-grid">
-        {
-          recentPubs.map((pub) => (
-            <a class="tile-card" href={`/research/${pub.id}/`}>
-              <img
-                class="tile-card__image"
-                src={`/og/research/${pub.id}.png`}
-                width="1200"
-                height="630"
-                loading="lazy"
-                decoding="async"
-                alt=""
-              />
-              <p class="meta">{pub.data.year} · {pub.data.venue}</p>
-              <p class="tile-card__title">{pub.data.title}</p>
-            </a>
-          ))
-        }
-      </div>
-      <p style="margin-top: var(--space-4);"><a href="/research">All research →</a></p>
-    </section>
-
-    <section style="margin-top: var(--space-8);">
-      <p class="section-label">// blog</p>
-      <h2>Recent blog</h2>
-      <div class="card-grid">
-        {
-          recentPosts.map((post) => (
-            <a class="tile-card" href={`/blog/${post.id}/`}>
-              <img
-                class="tile-card__image"
-                src={`/og/blog/${post.id}.png`}
-                width="1200"
-                height="630"
-                loading="lazy"
-                decoding="async"
-                alt=""
-              />
-              <p class="meta">
-                {post.data.date.toISOString().slice(0, 10)}
-                {post.data.venue && ` · via ${post.data.venue}`}
-              </p>
-              <p class="tile-card__title">{post.data.title}</p>
-            </a>
-          ))
-        }
-      </div>
-      <p style="margin-top: var(--space-4);"><a href="/blog">All blog posts →</a></p>
-    </section>
-
-    <div class="prose-width" style="margin-top: var(--space-8);">
-      <NewsletterForm />
-    </div>
   </div>
+
+  <script>
+    import '../scripts/feed-filter.js';
+  </script>
 </BaseLayout>

@@ -22,3 +22,8 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# raw import material and design-handoff dumps -- working files, not site
+# content; anything actually used gets copied into src/content or public/
+content-import/
+design_handoff_*/
