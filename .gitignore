@@ -27,3 +27,7 @@ pnpm-debug.log*
 # content; anything actually used gets copied into src/content or public/
 content-import/
 design_handoff_*/
+
+# implementation rationale for working with Claude -- kept locally, not
+# published to the public repo
+DEVNOTES.md
