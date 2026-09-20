@@ -1,12 +1,13 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import FilterBar from '../../components/FilterBar.astro';
 import PublicationCard from '../../components/PublicationCard.astro';
 import { TYPE_LABEL } from '../../lib/citations';
 import { AREA_LABELS, AREA_ORDER } from '../../lib/taxonomy';
 
-const pubs = (await getCollection('publications')).sort((a, b) => b.data.year - a.data.year);
+const pubDate = (p: CollectionEntry<'publications'>) => p.data.date ?? new Date(p.data.year, 0, 1);
+const pubs = (await getCollection('publications')).sort((a, b) => pubDate(b).valueOf() - pubDate(a).valueOf());
 
 const QUICK_AREAS = ['copyright', 'ai', 'it-security-law', 'law-and-society'] as const;
 

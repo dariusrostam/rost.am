@@ -46,6 +46,7 @@ const publications = defineCollection({
     authors: z.array(z.string()),
     editorRole: z.boolean().default(false),
     year: z.number(),
+    date: z.coerce.date().optional(),
     type: z.enum(['monograph', 'edited-volume', 'article', 'chapter', 'case-note', 'blog', 'working-paper']),
     areas: z.array(z.enum(AREAS)),
     venue: z.string(),

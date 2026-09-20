@@ -9,11 +9,16 @@
 #     monograph and the ZGE article). Kept deliberately; the UI disambiguates by type.
 #   - The ZGE article was tagged Year 2026 in Notion but is cited as ZGE (4) 2025,
 #     471–499. Set to 2025 below — change back if the print year really is 2026.
+#   - `date` (added to reproduce a specific home/research display order) is an
+#     estimated publication date for entries where `year` alone doesn't disambiguate
+#     order against neighboring entries — check/correct each against the real
+#     publication date where you have it.
 
 - slug: opt-outs-in-copyright-law
   title: "Opt-Outs in Copyright Law: Can They Save AI Training Under Fair Use and the Three-Step Test?"
   authors: ["Darius Rostam"]
   year: 2026
+  date: 2025-10-01
   type: working-paper
   areas: [copyright, ai]
   venue: "SSRN Working Paper"
@@ -48,6 +53,7 @@
   title: "Web Scraping in Culture and Law"
   authors: ["Darius Rostam"]
   year: 2026
+  date: 2025-11-01
   type: working-paper
   areas: [culture-and-law, ai]
   venue: "SSRN Working Paper"
@@ -74,6 +80,7 @@
   title: "(Wieder nur) Zur Zulässigkeit von Vervielfältigungen für die Erstellung eines Datensatzes – zugleich Besprechung von OLG Hamburg, Urt. v. 10.12.2025 – 5 U 104/24 – LAION"
   authors: ["Darius Rostam"]
   year: 2026
+  date: 2026-05-01
   type: case-note
   areas: [copyright, ai]
   venue: "GRUR 2026, 376"
@@ -95,6 +102,7 @@
   title: "Zum Umgang mit Umgehung – Anmerkung zu Generalanwalt beim EuGH, Schlussanträge vom 15.1.2026 – C-788/24 – Anne Frank Fonds"
   authors: ["Darius Rostam"]
   year: 2026
+  date: 2026-09-05
   type: case-note
   areas: [copyright]
   venue: "ZUM 2026, 535"
@@ -118,6 +126,7 @@
   title: "Targeting the Right Question: What AG Rantos Left Open in Anne Frank Fonds"
   authors: ["Darius Rostam"]
   year: 2026
+  date: 2026-07-02
   type: blog
   areas: [copyright]
   venue: "Kluwer Copyright Blog"
@@ -140,6 +149,7 @@
   title: "Wenn künstliche Liebe gefährlich wird: Regulierung von AI Companions"
   authors: ["Darius Rostam"]
   year: 2026
+  date: 2026-03-01
   type: blog
   areas: [ai, law-and-society]
   venue: "Legal Tribune Online"
@@ -156,6 +166,7 @@
   title: "Handlungslasten des Urhebers"
   authors: ["Darius Rostam"]
   year: 2025
+  date: 2025-07-01
   type: monograph
   areas: [copyright]
   venue: "Mohr Siebeck, Tübingen 2025 (Dissertation, Universität Trier)"
@@ -178,6 +189,7 @@
   title: "Handlungslasten des Urhebers"
   authors: ["Darius Rostam"]
   year: 2025
+  date: 2025-12-15
   type: article
   areas: [copyright, ai]
   venue: "ZGE (4) 2025, 471–499"
@@ -208,6 +220,7 @@
   title: "Public Rules of Recognition of Platform Standards"
   authors: ["Darius Rostam"]
   year: 2025
+  date: 2025-09-01
   type: working-paper
   areas: [law-and-society, transnational-law]
   venue: "SSRN Working Paper"
@@ -233,6 +246,7 @@
   title: "(Nur) Zur Zulässigkeit von Vervielfältigungen für die Erstellung eines Datensatzes"
   authors: ["Darius Rostam", "Linda Kuschel"]
   year: 2025
+  date: 2025-01-15
   type: case-note
   areas: [copyright, ai]
   venue: "ZUM 2025, 71"
@@ -312,6 +326,7 @@
   title: "Das Erfordernis technikverständlichen Verhaltens im Urheberrecht"
   authors: ["Darius Rostam"]
   year: 2021
+  date: 2021-03-01
   type: chapter
   areas: [copyright]
   venue: "in: Kuschel/Asmussen/Golla (Hrsg.), Intelligente Systeme – Intelligentes Recht, Nomos, Baden-Baden 2021"
@@ -340,6 +355,7 @@
   title: "Urheberrecht und IT-Sicherheit"
   authors: ["Darius Rostam", "Linda Kuschel"]
   year: 2021
+  date: 2021-06-01
   type: chapter
   areas: [copyright, it-security-law]
   venue: "in: Ebers/Steinrötter (Hrsg.), Künstliche Intelligenz und smarte Robotik im IT-Sicherheitsrecht, Nomos, Baden-Baden 2021"
@@ -370,6 +386,7 @@
   authors: ["Bittner", "Guntermann", "Müller", "Rostam"]
   editorRole: true   # (Hrsg.) — render as "ed." / "Hrsg."
   year: 2021
+  date: 2021-09-01
   type: edited-volume
   areas: [it-security-law]
   venue: "Nomos, Baden-Baden 2021"

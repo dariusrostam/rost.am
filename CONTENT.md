@@ -33,6 +33,7 @@ needed. `<Aside>` component: `.mdx` files only, needs `import Aside from '../../
 | `authors`    | yes      | list of full names, in citation order                                                    |
 | `editorRole` | no       | `true` renders "(Hrsg.)"; defaults to `false`                                            |
 | `year`       | yes      | number                                                                                   |
+| `date`       | no       | `YYYY-MM-DD` — used only to order entries (home stream, research list) when `year` alone doesn't disambiguate; falls back to Jan 1 of `year` when unset |
 | `type`       | yes      | `monograph` \| `edited-volume` \| `article` \| `chapter` \| `case-note` \| `blog` \| `working-paper` — drives the BibTeX/RIS entry type and citation template |
 | `areas`      | yes      | list from the fixed vocabulary below                                                     |
 | `venue`      | yes      | free text, but the citation generators parse it — see the pattern notes below            |
