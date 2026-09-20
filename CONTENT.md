@@ -1,6 +1,6 @@
 # Content field reference
 
-One page, every field. See README.md for workflows (how to actually do things); this is just the schema.
+One page, every field — the schema for every YAML file and frontmatter block in this repo.
 
 ## Blog posts — `src/content/blog/*.md` or `*.mdx`
 
