@@ -741,6 +741,7 @@
   margin: 10px 0 0;
   font-size: var(--text-base);
   line-height: var(--leading-normal);
+  overflow-wrap: anywhere;
 }
 
 .feed-body :first-child {

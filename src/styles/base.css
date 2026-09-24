@@ -49,6 +49,13 @@ p {
   hanging-punctuation: first last;
 }
 
+/* Safari's `pretty` rebalances every line, leaving a ragged right edge on narrow screens */
+@media (max-width: 640px) {
+  p {
+    text-wrap: wrap;
+  }
+}
+
 a {
   color: var(--color-accent);
 }
