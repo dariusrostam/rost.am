@@ -5,7 +5,7 @@ export type StreamEntry =
   | { type: 'note' | 'link' | 'youtube'; date: Date; entry: CollectionEntry<'now'> }
   | { type: 'blogpost'; date: Date; post: CollectionEntry<'blog'> }
   | { type: 'publication'; date: Date; pub: CollectionEntry<'publications'> }
-  | { type: 'bluesky'; date: Date; url: string; text: string; thumb?: string };
+  | { type: 'bluesky'; date: Date; url: string; text: string; thumb?: string; repostAuthor?: string };
 
 export interface StreamResult {
   entries: StreamEntry[];
@@ -24,7 +24,9 @@ export async function getStreamEntries(limit?: number): Promise<StreamResult> {
     ...nowItems.map((entry): StreamEntry => ({ type: entry.data.type, date: entry.data.date, entry })),
     ...blogPosts.map((post): StreamEntry => ({ type: 'blogpost', date: post.data.date, post })),
     ...pubs.map((pub): StreamEntry => ({ type: 'publication', date: pub.data.date ?? new Date(pub.data.year, 0, 1), pub })),
-    ...blueskyPosts.map((p): StreamEntry => ({ type: 'bluesky', date: p.date, url: p.url, text: p.text, thumb: p.thumb })),
+    ...blueskyPosts.map(
+      (p): StreamEntry => ({ type: 'bluesky', date: p.date, url: p.url, text: p.text, thumb: p.thumb, repostAuthor: p.repostAuthor }),
+    ),
   ];
 
   entries.sort((a, b) => b.date.valueOf() - a.date.valueOf());
