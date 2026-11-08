@@ -98,6 +98,30 @@
     auf nachgelagerten Gliedern der KI-Wertschöpfungskette bei der Beurteilung der konkreten
     Vervielfältigungshandlung zu berücksichtigen sind.
 
+- slug: technik-und-kennenmuessen-haftungsbegrenzungen
+  title: "Zu Technik und Kennenmüssen als Haftungsbegrenzungen beim Recht der öffentlichen Wiedergabe – zugleich Anmerkung zu EuGH, Urt. v. 9.7.2026 – C-788/24 – Anne Frank Fonds"
+  authors: ["Darius Rostam"]
+  year: 2026
+  date: 2026-11-08
+  type: case-note
+  areas: [copyright]
+  venue: "ZUM 2026, 794"
+  language: de
+  openAccess: false
+  url: "https://beck-online.beck.de/Bcid/Y-300-Z-ZUM-B-2026-S-794-N-1"
+  pdf: "/papers/technik-und-kennenmuessen-haftungsbegrenzungen.pdf"
+  thumbnail: "/papers/thumbs/technik-und-kennenmuessen-haftungsbegrenzungen.jpg"
+  abstract: >-
+    Der EuGH hat in der Rechtssache Anne Frank Fonds (C-788/24) erstmals entschieden, wo eine öffentliche
+    Wiedergabe im Internet lokalisiert wird: Wer ein Werk online stellt, verletzt das Recht überall dort, wo es
+    noch geschützt ist, es sei denn, er sperrt den Zugriff aus diesen Mitgliedstaaten durch wirksame technische
+    Maßnahmen wie Geoblocking, sofern er die unterschiedliche Schutzlage kannte oder kennen musste. Die Anmerkung
+    geht zwei offenen Fragen nach: Sie zeigt, dass technische Maßnahmen zwar ein hilfreiches Kriterium sind, sich
+    aus den Erwägungen des Gerichtshofs aber nicht als einzig zulässiges ableiten lassen. Außerdem spricht viel
+    dafür, den liberalen Sorgfaltsmaßstab aus der Linking-Rechtsprechung (GS Media) für das „Kennenmüssen" zu
+    übertragen. Die Pflicht zum Geoblocking bliebe dann auf Fälle beschränkt, in denen sie Nutzern ohne
+    Gewinnerzielungsabsicht zumutbar ist.
+
 - slug: zum-umgang-mit-umgehung
   title: "Zum Umgang mit Umgehung – Anmerkung zu Generalanwalt beim EuGH, Schlussanträge vom 15.1.2026 – C-788/24 – Anne Frank Fonds"
   authors: ["Darius Rostam"]
